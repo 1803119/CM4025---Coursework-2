@@ -10,14 +10,14 @@ var port = PORT;
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGO_URI;
-console.log(uri);
+//console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
-  const collection = client.db("test").collection("devices");
+  const collection = client.db("Cluster0").collection("devices");
   // perform actions on the collection object
   console.log("Mongo running");
-  collection.insertOne({name: "Andrew", age: 21}, function(err1, res){
-      if (err1) console.log(err1);
+  collection.insertOne({name: "Andrew", age: 21}, function(err, res){
+      if (err) throw err;
       console.log("1 user inserted");
 
   });
