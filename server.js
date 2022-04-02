@@ -9,7 +9,7 @@ var port = PORT;
 
 // send index.html file as home page
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/Pages/index.html');
 });
 
 // route for login
