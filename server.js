@@ -15,6 +15,11 @@ client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   console.log("Mongo running");
+  collection.insertOne({name: "Andrew", age: 21}, function(err, res){
+      if (err) throw err;
+      console.log("1 user inserted");
+
+  })
   client.close();
 });
 
