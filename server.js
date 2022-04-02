@@ -22,7 +22,6 @@ MongoClient.connect(uri, function(err, db) {
     //collection.insertOne({name: "Andrew", age: 21}, function(err, res){
     //    if (err) throw err;
     //    console.log("1 user inserted");
-
     //});
   
 });
