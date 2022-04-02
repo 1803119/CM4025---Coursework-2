@@ -17,7 +17,7 @@ client.connect(err => {
   // perform actions on the collection object
   console.log("Mongo running");
   collection.insertOne({name: "Andrew", age: 21}, function(err1, res){
-      if (err1) throw err1;
+      if (err1) console.log(err1);
       console.log("1 user inserted");
 
   });
