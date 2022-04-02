@@ -13,7 +13,7 @@ const uri = process.env.MONGO_URI;
 //console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect((err, db) => {
-  const collection = db.db("test").collection("devices");
+  const collection = db.db().collection("devices");
   // perform actions on the collection object
   console.log("Mongo running");
   collection.insertOne({name: "Andrew", age: 21}, function(err, res){
