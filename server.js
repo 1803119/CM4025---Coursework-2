@@ -13,14 +13,14 @@ const uri = process.env.MONGO_URI;
 //console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
-  const collection = client.db("Cluster0").collection("devices");
+  const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   console.log("Mongo running");
-  collection.insertOne({name: "Andrew", age: 21}, function(err, res){
-      if (err) throw err;
-      console.log("1 user inserted");
+  //collection.insertOne({name: "Andrew", age: 21}, function(err, res){
+  //    if (err) throw err;
+  //    console.log("1 user inserted");
 
-  });
+  //});
   
 });
 //client.close();
