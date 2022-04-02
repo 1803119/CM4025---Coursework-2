@@ -23,6 +23,7 @@ MongoClient.connect(uri, function(err, db) {
     //    console.log("1 user inserted");
     //});
 });
+
 //client.close();
 
 // send index.html file as home page
