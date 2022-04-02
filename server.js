@@ -1,6 +1,8 @@
 // Load express and create app
 var express = require('express');
 var app = express();
+const MongoClient = require('mongodb').MongoClient;
+const { ObjectId } = require('mongodb');
 
 const PORT = process.env.PORT || 8080;
 
@@ -8,20 +10,20 @@ const PORT = process.env.PORT || 8080;
 var port = PORT;
 
 
-const mongoClient = require('mongodb').MongoClient;
+
 const uri = process.env.MONGO_URI;
 //console.log(uri);
-mongoClient.connect(uri, function(err, db) {
+MongoClient.connect(uri, function(err, db) {
     if(err) throw err;
-    const collection = db.db("test").collection("devices");
+    //const collection = db.db("test").collection("devices");
     
     // perform actions on the collection object
     console.log("Mongo running");
-    collection.insertOne({name: "Andrew", age: 21}, function(err, res){
-        if (err) throw err;
-        console.log("1 user inserted");
+    //collection.insertOne({name: "Andrew", age: 21}, function(err, res){
+    //    if (err) throw err;
+    //    console.log("1 user inserted");
 
-  });
+    //});
   
 });
 //client.close();
