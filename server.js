@@ -7,6 +7,17 @@ const PORT = process.env.PORT || 8080;
 // Set the port based on environment
 var port = PORT;
 
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://2468vert:<password>@cluster0.mchqb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
 // send index.html file as home page
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/Pages/index.html');
@@ -31,6 +42,8 @@ app.route('/login')
     console.log('Processing');
     res.send('Processing the login form');
 });
+
+
 
 // start server
 app.listen(PORT);
