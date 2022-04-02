@@ -21,8 +21,8 @@ client.connect(err => {
     if (err) throw err;
         console.log("1 user inserted");
     });
-    
-    client.close();
+
+    //client.close();
 });
 
 // const uri = process.env.MONGO_URI;
