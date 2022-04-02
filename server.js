@@ -20,9 +20,9 @@ client.connect(err => {
       console.log("1 user inserted");
 
   });
-  client.close();
+  
 });
-
+client.close();
 
 // send index.html file as home page
 app.get('/', function(req, res){
