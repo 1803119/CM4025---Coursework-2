@@ -16,7 +16,7 @@ app.get('/', function(req, res){
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.send('This is the login form');
+    res.sendFile(__dirname + '/Pages/login.html');
 })
 // Process the form
 .post(function(req, res){
