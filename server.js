@@ -12,6 +12,14 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/Pages/index.html');
 });
 
+// Routes for admin section
+var adminRouter = express.Router();
+adminRouter.get('/', function(req, res){
+    res.send('Admin dashboard');
+});
+
+app.use('/admin', adminRouter);
+
 // route for login
 app.route('/login')
 // show the form
