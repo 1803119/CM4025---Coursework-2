@@ -1,0 +1,23 @@
+{
+  "name": "cm4025---coursework-2",
+  "version": "1.0.0",
+  "description": "The \"Justice for Ugly Animals\" website for Enterprise Web Dev Coursework 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1803119/CM4025---Coursework-2.git"
+  },
+  "author": "1803119",
+  "dependencies": {
+    "express": "~4.13.4"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1803119/CM4025---Coursework-2/issues"
+  },
+  "homepage": "https://github.com/1803119/CM4025---Coursework-2#readme"
+}
