@@ -8,17 +8,18 @@ const PORT = process.env.PORT || 8080;
 var port = PORT;
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const mongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGO_URI;
 //console.log(uri);
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect((err, db) => {
-  const collection = db.db().collection("devices");
-  // perform actions on the collection object
-  console.log("Mongo running");
-  collection.insertOne({name: "Andrew", age: 21}, function(err, res){
-      if (err) throw err;
-      console.log("1 user inserted");
+mongoClient.connect(uri, function(err, db) {
+    if(err) throw err;
+    const collection = db.db("test").collection("devices");
+    
+    // perform actions on the collection object
+    console.log("Mongo running");
+    collection.insertOne({name: "Andrew", age: 21}, function(err, res){
+        if (err) throw err;
+        console.log("1 user inserted");
 
   });
   
