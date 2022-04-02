@@ -19,7 +19,7 @@ client.connect(err => {
       if (err) throw err;
       console.log("1 user inserted");
 
-  })
+  });
   client.close();
 });
 
