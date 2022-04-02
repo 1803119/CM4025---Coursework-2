@@ -12,6 +12,18 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
+// route for login
+app.route('/login')
+// show the form
+.get(function(req, res){
+    res.send('This is the login form');
+})
+// Process the form
+.post(function(req, res){
+    console.log('Processing');
+    res.send('Processing the login form');
+});
+
 // start server
 app.listen(PORT);
 console.log('Express Server running');
