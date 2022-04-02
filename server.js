@@ -23,7 +23,7 @@ client.connect(err => {
   });
   
 });
-client.close();
+//client.close();
 
 // send index.html file as home page
 app.get('/', function(req, res){
