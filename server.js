@@ -16,7 +16,6 @@ const uri = process.env.MONGO_URI;
 MongoClient.connect(uri, function(err, db) {
     if(err) throw err;
     //const collection = db.db("test").collection("devices");
-    
     // perform actions on the collection object
     console.log("Mongo running");
     //collection.insertOne({name: "Andrew", age: 21}, function(err, res){
