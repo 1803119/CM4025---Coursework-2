@@ -62,6 +62,7 @@ app.route('/register')
     res.sendFile(__dirname + "/Pages/register.html");
 })
 .post(function(req, res){
+    console.log("Into Post");
     var inputName = req.body.inputName;
     var inputAge = req.body.inputAge;
     console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
@@ -70,6 +71,7 @@ app.route('/register')
         if(err) throw err;
         console.log("User registered");
     });
+    console.log("Out of Post");
     //res.redirect('/');
 });
 
