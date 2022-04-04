@@ -41,7 +41,7 @@
             inputName = document.getElementById("name");
             inputAge = document.getElementById("age");
 
-            req.open("POST", "/login?input1=" + input1 + "&input2=" + input2, true);
+            req.open("POST", "/login?input1=" + inputName + "&input2=" + inputAge, true);
 		    req.send();
         }
         
