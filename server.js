@@ -18,7 +18,7 @@ client.connect(err => {
     const collection = client.db("test").collection("devices");
     // perform actions on the collection object
     collection.insertOne({name: "Andrew", age: 21}, function(err, res){
-    if (err) throw err;
+        if (err) throw err;
         console.log("1 user inserted");
     });
 
@@ -46,7 +46,7 @@ app.route('/login')
 })
 // Process the form
 .post(function(req, res){
-    console.log('Processing');
+    console.log(req);
     var inputName = req.query.inputName;
     var inputAge = req.query.inputAge;
     console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
