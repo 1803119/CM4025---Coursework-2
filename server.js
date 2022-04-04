@@ -62,7 +62,7 @@ app.route('/register')
     res.sendFile(__dirname + "/Pages/register copy.html");
 })
 .post(function(req, res){
-    console.log(req.path);
+    console.log(req.body);
     var inputName = req.body.inputName;
     var inputAge = req.body.inputAge;
     console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
