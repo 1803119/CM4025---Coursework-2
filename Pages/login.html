@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <body onload="makeRequest();">
-    <!-- <form method="post">
+    <form method="post">
         <label for="name">Name: </label>
         <input type="text" id="name">
         <label for="name">Age: </label>
         <input type="text" id="age">
         <button onclick="doStuff()">Submit</button>
-    </form> -->
+    </form>
 
     <script>
         var req;
@@ -38,8 +38,8 @@
         }
 
         function doStuff(){
-            inputName = document.getElementById("name");
-            inputAge = document.getElementById("age");
+            inputName = document.getElementById("name").value;
+            inputAge = document.getElementById("age").value;
             console.log(inputName);
 
             req.open("POST", "/login?input1=" + inputName + "&input2=" + inputAge, true);
@@ -49,8 +49,8 @@
 
 
     </script>
-    <input type="text" id="name">
+    <!-- <input type="text" id="name">
     <input type="text" id="age">
-    <input type="button" onclick="doStuff()">Submit</input>
+    <input type="button" onclick="doStuff()">Submit</input> -->
 </body>
 </html>
