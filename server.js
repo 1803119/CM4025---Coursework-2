@@ -49,12 +49,28 @@ app.route('/login')
 })
 // Process the form
 .post(function(req, res){
-    console.log(req.body);
-    //var inputName = req.query.inputName;
-    //var inputAge = req.query.inputAge;
-    //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    //console.log(req.body);
+    var inputName = req.query.inputName;
+    var inputAge = req.query.inputAge;
+    console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     res.send('Processing the login form');
     
+});
+
+app.route('/register')
+.get(function(req, res){
+    res.sendFile(__dirname + "/Pages/login.html");
+})
+.post(function(req, res){
+    var inputName = req.query.inputName;
+    var inputAge = req.query.inputAge;
+    console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    res.send('Processing the registration form');
+    collection.insertOne({name: inputName, age: inputAge}, function(err, res){
+        if(err) throw err;
+        console.log("User registered");
+    });
+
 });
 
 
