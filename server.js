@@ -1,6 +1,8 @@
 // Load express and create app
 var express = require('express');
 var app = express();
+const bodyParser = require('body-parser');
+
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
 
@@ -9,10 +11,7 @@ const PORT = process.env.PORT || 8080;
 // Set the port based on environment
 var port = PORT;
 
-app.use(express.urlencoded({
-    extended: true
-  }));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGO_URI;
