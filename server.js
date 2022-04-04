@@ -9,6 +9,10 @@ const PORT = process.env.PORT || 8080;
 // Set the port based on environment
 var port = PORT;
 
+app.use(express.urlencoded({
+    extended: true
+  }));
+
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGO_URI;
