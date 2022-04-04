@@ -70,7 +70,7 @@ app.route('/register')
         if(err) throw err;
         console.log("User registered");
     });
-    res.redirect('/');
+    //res.redirect('/');
 });
 
 
