@@ -72,7 +72,7 @@ app.route('/register')
         console.log("User registered");
     });
     console.log("Out of Post");
-    res.redirect("/");
+    res.send("Test");
 });
 
 
