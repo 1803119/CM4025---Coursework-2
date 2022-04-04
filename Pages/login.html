@@ -44,7 +44,7 @@
 
             //req.open("POST", "/login?input1=" + inputName + "&input2=" + inputAge, true);
 		    //req.send();
-            var params = 'input1=' + inputName + '&input2=' + inputAge;
+            var params = 'inputName=' + inputName + '&inputAge=' + inputAge;
 		    req.open('POST', '/login?', true);
 		    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    req.send(params);
