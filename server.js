@@ -20,10 +20,10 @@ client.connect(err => {
     console.log("Connected to MongoDB");
     const collection = client.db("test").collection("devices");
     // perform actions on the collection object
-    collection.insertOne({name: "Andrew", age: 21}, function(err, res){
-        if (err) throw err;
-        console.log("1 user inserted");
-    });
+    // collection.insertOne({name: "Andrew", age: 21}, function(err, res){
+    //     if (err) throw err;
+    //     console.log("1 user inserted");
+    // });
 
     //client.close();
 });
@@ -63,8 +63,8 @@ app.route('/register')
 })
 .post(function(req, res){
     console.log("Into Post");
-    var inputName = req.body[inputName];
-    var inputAge = req.body[inputAge];
+    var inputName = req.body.inputName;
+    var inputAge = req.body.inputAge;
     console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
     client.db("test").collection("devices").insertOne({name: inputName, age: inputAge}, function(err, res){
@@ -72,7 +72,7 @@ app.route('/register')
         console.log("User registered");
     });
     console.log("Out of Post");
-    res.redirect('/');
+    res.sendFile(__dirname + '/Pages/index.html');
 });
 
 
