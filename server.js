@@ -57,13 +57,10 @@ app.route('/login')
     
 });
 
-var registerRouter = express.Router();
-
-registerRouter.get("/", function(req, res){
-    res.sendFile(__dirname + '/Pages/register.html');
-});
-
-registerRouter.route('/register')
+app.route('/register')
+.get(function(req, res){
+    res.sendFile(__dirname + "/Pages/register copy.html");
+})
 .post(function(req, res){
     console.log(req.path);
     var inputName = req.body.inputName;
@@ -78,7 +75,7 @@ registerRouter.route('/register')
     res.redirect("/");
 });
 
-app.use('/register', registerRouter);
+
 
 // start server
 app.listen(PORT);
