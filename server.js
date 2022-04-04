@@ -65,12 +65,12 @@ app.route('/register')
     var inputName = req.body.inputName;
     var inputAge = req.body.inputAge;
     console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
-    res.send('Processing the registration form');
+    
     client.db("test").collection("devices").insertOne({name: inputName, age: inputAge}, function(err, res){
         if(err) throw err;
         console.log("User registered");
     });
-
+    res.redirect('/');
 });
 
 
