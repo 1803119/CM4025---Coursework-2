@@ -57,10 +57,13 @@ app.route('/login')
     
 });
 
-app.route('/register')
-.get(function(req, res){
-    res.sendFile(__dirname + "/Pages/register.html");
-})
+var registerRouter = express.Router();
+
+registerRouter.get("/", function(req, res){
+    res.sendFile(__dirname + '/Pages/register.html');
+});
+
+registerRouter.route('/register')
 .post(function(req, res){
     console.log(req.path);
     var inputName = req.body.inputName;
@@ -72,10 +75,10 @@ app.route('/register')
         console.log("User registered");
     });
     console.log("Out of Post");
-    res.send("Test");
+    res.redirect("/");
 });
 
-
+app.use('/register', registerRouter);
 
 // start server
 app.listen(PORT);
