@@ -1,11 +1,52 @@
 <!DOCTYPE html>
-<body>
+<body onload="makeRequest();">
     <form method="post">
         <label for="name">Name: </label>
         <input type="text" id="name">
         <label for="name">Age: </label>
         <input type="text" id="age">
-        <button type="submit">Submit</button>
+        <button onclick="">Submit</button>
     </form>
+
+    <script>
+        var req;
+
+        function makeRequest() {
+        
+            if (window.XMLHttpRequest) {
+                req = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) {
+                req = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            else {
+                // Ajax not supported
+                return;
+            }
+
+            req.onreadystatechange = function() {
+            
+                var txt = "";
+                
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = this.responseText;
+                    console.log (response);
+                    document.getElementById("answer").innerHTML = response;
+                }
+            };
+
+        }
+
+        function doStuff(){
+            inputName = document.getElementById("name");
+            inputAge = document.getElementById("age");
+
+            req.open("POST", "/login?input1=" + input1 + "&input2=" + input2, true);
+		    req.send();
+        }
+        
+
+
+    </script>
 </body>
 </html>
