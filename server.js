@@ -25,21 +25,6 @@ client.connect(err => {
     //client.close();
 });
 
-// const uri = process.env.MONGO_URI;
-// //console.log(uri);
-// MongoClient.connect(uri, function(err, db) {
-//     if(err) throw err;
-//     //const collection = db.db("test").collection("devices");
-//     // perform actions on the collection object
-//     console.log("Mongo running");
-//     //collection.insertOne({name: "Andrew", age: 21}, function(err, res){
-//     //    if (err) throw err;
-//     //    console.log("1 user inserted");
-//     //});
-// });
-
-//client.close();
-
 // send index.html file as home page
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/Pages/index.html');
