@@ -59,7 +59,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.sendFile(__dirname + "/Pages/login.html");
+    res.sendFile(__dirname + "/Pages/register.html");
 })
 .post(function(req, res){
     var inputName = req.body.inputName;
