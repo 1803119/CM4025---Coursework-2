@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <body>
     <form method="POST" action="/register">
-        <label for="name">Name: </label>
-        <input type="text" id="name" name="name">
-        <label for="name">Age: </label>
-        <input type="text" id="age" name="age">
-        <input type="submit" value="Submit">
+        <label for="firstName">Name: </label>
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="lastName">Age: </label>
+        <input type="text" id="lastName" name="lastName" required>
+        <label for="dateOfBirth">Date of Birth: </label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth">
+        <label for="emailAddress">Email Address: </label>
+        <input type="email" id="emailAddress" name="emailAddress" required>
+        <label for="password">Desired Password: (min. 8 characters)</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+        <label for="confirmPassword">Confirm Desired Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required>
+        <input type="submit" value="Submit" onclick="validatePassword()">
     </form>
+
+    <script language='javascript' type='text/javascript'>
+        function validatePassword(input) {
+            if (document.getElementById('password').value != document.getElementById('confirmPassword')) {
+                input.setCustomValidity('Password Must be Matching.');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+    </script>
 
     
 </body>
