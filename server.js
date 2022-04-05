@@ -67,7 +67,7 @@ app.route('/register')
 
     var firstName = data.firstName;
     var lastName = data.lastName;
-    console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
     client.db("test").collection("devices").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
         if(err) throw err;
