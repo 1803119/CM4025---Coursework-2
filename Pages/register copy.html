@@ -13,7 +13,7 @@
         <input type="password" id="password" name="password" minlength="8" required>
         <label for="confirmPassword">Confirm Desired Password</label>
         <input type="password" id="confirmPassword" name="confirmPassword" minlength="8" required>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="validatePassword()">
     </form>
 
     <script language='javascript' type='text/javascript'>
@@ -25,7 +25,6 @@
                 document.getElementById('password').setCustomValidity('');
             }
         }
-        //onclick="validatePassword()"
     </script>
 
     
