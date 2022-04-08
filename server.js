@@ -18,7 +18,7 @@ const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
     console.log("Connected to MongoDB");
-    const collection = client.db("test").collection("devices");
+    const collection = client.db().collection("devices");
     // perform actions on the collection object
     // collection.insertOne({name: "Andrew", age: 21}, function(err, res){
     //     if (err) throw err;
