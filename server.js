@@ -69,7 +69,7 @@ app.route('/register')
     var lastName = data.lastName;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
-    client.db("test").collection("devices").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+    client.db().collection("devices").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
         if(err) throw err;
         console.log("User registered");
     });
