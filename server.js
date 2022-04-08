@@ -18,7 +18,7 @@ const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
     console.log("Connected to MongoDB");
-    const collection = client.db().collection("devices");
+    //const collection = client.db().collection("devices");
     // perform actions on the collection object
     // collection.insertOne({name: "Andrew", age: 21}, function(err, res){
     //     if (err) throw err;
@@ -69,7 +69,7 @@ app.route('/register')
     var lastName = data.lastName;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
-    client.db().collection("devices").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+    client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
         if(err) throw err;
         console.log("User registered");
     });
