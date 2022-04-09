@@ -24,7 +24,8 @@
             } else {
                 // input is valid -- reset the error message
                 document.getElementById('password').setCustomValidity('');
-                document.getElementById('password').value = hash(document.getElementById('password').value);
+                //document.getElementById('password').value = hash(document.getElementById('password').value);
+                console.log(hash(document.getElementById('password').value));
             }
         }
 
