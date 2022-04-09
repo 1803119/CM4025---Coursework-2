@@ -49,10 +49,10 @@ app.route('/login')
 })
 // Process the form
 .post(function(req, res){
-    //console.log(req.body);
-    var inputName = req.body.inputName;
-    var inputAge = req.body.inputAge;
-    console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    console.log(req.body);
+    //var inputName = req.body.inputName;
+    //var inputAge = req.body.inputAge;
+    //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     res.send('Processing the login form');
     
 });

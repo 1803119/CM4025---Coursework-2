@@ -15,6 +15,7 @@
         <input type="password" id="confirmPassword" minlength="8" required>
         <input type="submit" value="Submit" onclick="validatePassword()">
     </form>
+    <script src="../JS/encryption.js"></script>
 
     <script language='javascript' type='text/javascript'>
         function validatePassword() {
@@ -23,8 +24,11 @@
             } else {
                 // input is valid -- reset the error message
                 document.getElementById('password').setCustomValidity('');
+                document.getElementById('password').value = hash(document.getElementById('password').value);
             }
         }
+
+        
     </script>
 
     
