@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="/Pages/encryption.js"></script>
+    
 </head>
 <body>
     <form method="POST" action="/register">
@@ -19,7 +19,7 @@
         <input type="submit" value="Submit" onclick="validatePassword()">
     </form>
     
-
+    <script type="text/javascript" src="/JS/encryption.js"></script>
     <script language='javascript' type='text/javascript'>
         function validatePassword() {
             if (document.getElementById('password').value != document.getElementById('confirmPassword').value) {
