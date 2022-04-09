@@ -46,7 +46,7 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.sendFile(__dirname + '/Pages/login.html');
+    res.sendFile(__dirname + 'public/Pages/login.html');
 })
 // Process the form
 .post(function(req, res){
@@ -60,7 +60,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.render("Pages/register copy");
+    res.sendFile(__dirname + "/Pages/register copy.html");
 })
 .post(function(req, res){
     console.log(req.body);
