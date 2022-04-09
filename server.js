@@ -60,7 +60,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.sendFile(__dirname + "/Pages/register copy.html");
+    res.render("/Pages/register copy.html");
 })
 .post(function(req, res){
     console.log(req.body);
