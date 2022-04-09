@@ -46,7 +46,7 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.sendFile(__dirname + 'public/Pages/login.html');
+    res.sendFile(__dirname + '/Pages/login.html');
 })
 // Process the form
 .post(function(req, res){
