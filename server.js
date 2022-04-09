@@ -60,7 +60,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.render("/Pages/register copy");
+    res.render("Pages/register copy");
 })
 .post(function(req, res){
     console.log(req.body);
