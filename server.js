@@ -99,7 +99,7 @@ app.route('/register')
 .get(function(req, res){
     res.sendFile(__dirname + "/Pages/register copy.html");
 })
-.post(function(req, res){
+.post(async, function(req, res){
     
 
     console.log(req.body);
@@ -109,11 +109,15 @@ app.route('/register')
     var myPlaintextPassword = "password";
     var hashedPass;
 
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(data.password, salt, function(err, hash) {
+    bcrypt.genSaltSync(saltRounds, function(err, salt) {
+        bcrypt.hashSync(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
             //data.password = hash;
             hashedPass = hash;
+            client.db().collection("users").insertOne({firstName: data.firstName, password: hashedPass}, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+                if(err) throw err;
+                console.log("User registered");
+            });
         });
     });
 
@@ -121,10 +125,10 @@ app.route('/register')
     //var lastName = data.lastName;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
-    client.db().collection("users").insertOne({firstName: data.firstName, password: hashedPass}, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-        if(err) throw err;
-        console.log("User registered");
-    });
+    // client.db().collection("users").insertOne({firstName: data.firstName, password: hashedPass}, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+    //     if(err) throw err;
+    //     console.log("User registered");
+    // });
     //console.log("Out of Post");
     res.redirect("/");
 });
