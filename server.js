@@ -60,7 +60,7 @@ app.route('/login')
     //var inputName = req.body.inputName;
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
-    client.db().collection("users").findOne({email: data.email}, function(err, user){
+    client.db().collection("users").findOne({emailAddress: data.emailAddress}, function(err, user){
         console.log(user);
         
         bcrypt.compare(data.password, user.password, function(err, success){
