@@ -59,6 +59,8 @@ app.route('/login')
     
 });
 
+var salt;
+
 module.exports = (app) => {
     //const User = require('./user.model')
     const {
@@ -66,9 +68,10 @@ module.exports = (app) => {
         hash,
         compare
     } = require('/public/encryption');
-    let salt = generateSalt(12);
+    salt = generateSalt(12);
     console.log("Hello");
 }
+console.log(salt);
 
 
 app.route('/register')
