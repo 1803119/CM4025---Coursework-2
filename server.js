@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
-let crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
@@ -59,57 +59,67 @@ app.route('/login')
     
 });
 
-app.get('/register', function(req, res){
-    res.sendFile(__dirname + "/Pages/register copy.html");
-});
+// app.get('/register', function(req, res){
+//     res.sendFile(__dirname + "/Pages/register copy.html");
+// });
 
-module.exports = (app) => {
-    //const User = require('./user.model')
-    const {
-        generateSalt,
-        hash,
-        compare
-    } = require('/public/encryption');
-    let salt = generateSalt(12);
-    console.log("Hello");
-    app.post('/register', function(req, res){
-        console.log(req.body);
-        var data = req.body;
+// module.exports = (app) => {
+//     //const User = require('./user.model')
+//     const {
+//         generateSalt,
+//         hash,
+//         compare
+//     } = require('/public/encryption');
+//     let salt = generateSalt(12);
+//     console.log("Hello");
+//     app.post('/register', function(req, res){
+//         console.log(req.body);
+//         var data = req.body;
     
-        var firstName = data.firstName;
-        var lastName = data.lastName;
-        //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+//         var firstName = data.firstName;
+//         var lastName = data.lastName;
+//         //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
         
-        client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-            if(err) throw err;
-            console.log("User registered");
-        });
-        console.log("Out of Post");
-        res.redirect("/");
-    });
-}
+//         client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+//             if(err) throw err;
+//             console.log("User registered");
+//         });
+//         console.log("Out of Post");
+//         res.redirect("/");
+//     });
+// }
 //console.log(salt);
 
 
-// app.route('/register')
-// .get(function(req, res){
-//     res.sendFile(__dirname + "/Pages/register copy.html");
-// })
-// .post(function(req, res){
-//     console.log(req.body);
-//     var data = req.body;
+app.route('/register')
+.get(function(req, res){
+    res.sendFile(__dirname + "/Pages/register copy.html");
+})
+.post(function(req, res){
+    const saltRounds = 10;
+    var myPlaintextPassword = "password";
 
-//     var firstName = data.firstName;
-//     var lastName = data.lastName;
-//     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+            // Store hash in your password DB.
+            console.log(hash);
+        });
+    });
+
+    console.log(req.body);
+    var data = req.body;
+
+    var firstName = data.firstName;
+    var lastName = data.lastName;
+    //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
-//     client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-//         if(err) throw err;
-//         console.log("User registered");
-//     });
-//     console.log("Out of Post");
-//     res.redirect("/");
-// });
+    client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+        if(err) throw err;
+        console.log("User registered");
+    });
+    console.log("Out of Post");
+    res.redirect("/");
+});
 
 
 
