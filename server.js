@@ -100,28 +100,30 @@ app.route('/register')
     res.sendFile(__dirname + "/Pages/register copy.html");
 })
 .post(function(req, res){
-    const saltRounds = 10;
-    var myPlaintextPassword = "password";
-
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(myPlaintextPassword, salt, function(err, hash1) {
-            // Store hash in your password DB.
-            console.log(hash1);
-        });
-    });
+    
 
     console.log(req.body);
     var data = req.body;
 
-    var firstName = data.firstName;
-    var lastName = data.lastName;
+    const saltRounds = 10;
+    var myPlaintextPassword = "password";
+
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
+            // Store hash in your password DB.
+            data.password = hash;
+        });
+    });
+
+    //var firstName = data.firstName;
+    //var lastName = data.lastName;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
     client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
         if(err) throw err;
         console.log("User registered");
     });
-    console.log("Out of Post");
+    //console.log("Out of Post");
     res.redirect("/");
 });
 
