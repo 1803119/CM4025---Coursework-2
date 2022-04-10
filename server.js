@@ -51,14 +51,20 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.sendFile(__dirname + '/Pages/login.html');
+    res.sendFile(__dirname + '/Pages/login copy.html');
 })
 // Process the form
 .post(function(req, res){
     console.log(req.body);
+    var data = req.body
     //var inputName = req.body.inputName;
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    var user = client.db().collection("users").find({email: data.email}, {_id:0, password:1});
+
+    bcrypt.compare(data.password, user.password, function(err, success){
+        console.log(success);
+    })
     res.send('Processing the login form');
     
 });
@@ -112,9 +118,9 @@ app.route('/register')
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
-            //data.password = hash;
-            hashedPass = hash;
-            client.db().collection("users").insertOne({firstName: data.firstName, password: hashedPass}, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+            data.password = hash;
+            //hashedPass = hash;
+            client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
                 if(err) throw err;
                 console.log("User registered");
             });
