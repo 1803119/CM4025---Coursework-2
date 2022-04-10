@@ -99,7 +99,7 @@ app.route('/register')
 .get(function(req, res){
     res.sendFile(__dirname + "/Pages/register copy.html");
 })
-.post(async, function(req, res){
+.post(function(req, res){
     
 
     console.log(req.body);
