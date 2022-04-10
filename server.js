@@ -59,7 +59,9 @@ app.route('/login')
     
 });
 
-var salt;
+app.get('/register', function(req, res){
+    res.sendFile(__dirname + "/Pages/register copy.html");
+});
 
 module.exports = (app) => {
     //const User = require('./user.model')
@@ -68,31 +70,46 @@ module.exports = (app) => {
         hash,
         compare
     } = require('/public/encryption');
-    salt = generateSalt(12);
+    let salt = generateSalt(12);
     console.log("Hello");
-}
-console.log(salt);
-
-
-app.route('/register')
-.get(function(req, res){
-    res.sendFile(__dirname + "/Pages/register copy.html");
-})
-.post(function(req, res){
-    console.log(req.body);
-    var data = req.body;
-
-    var firstName = data.firstName;
-    var lastName = data.lastName;
-    //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    app.post('/register', function(req, res){
+        console.log(req.body);
+        var data = req.body;
     
-    client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-        if(err) throw err;
-        console.log("User registered");
+        var firstName = data.firstName;
+        var lastName = data.lastName;
+        //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+        
+        client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+            if(err) throw err;
+            console.log("User registered");
+        });
+        console.log("Out of Post");
+        res.redirect("/");
     });
-    console.log("Out of Post");
-    res.redirect("/");
-});
+}
+//console.log(salt);
+
+
+// app.route('/register')
+// .get(function(req, res){
+//     res.sendFile(__dirname + "/Pages/register copy.html");
+// })
+// .post(function(req, res){
+//     console.log(req.body);
+//     var data = req.body;
+
+//     var firstName = data.firstName;
+//     var lastName = data.lastName;
+//     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
+    
+//     client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+//         if(err) throw err;
+//         console.log("User registered");
+//     });
+//     console.log("Out of Post");
+//     res.redirect("/");
+// });
 
 
 
