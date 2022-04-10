@@ -67,7 +67,7 @@ module.exports = (app) => {
         compare
     } = require('/public/encryption');
     let salt = generateSalt(12);
-    console.log(salt);
+    console.log("Hello");
 }
 
 
