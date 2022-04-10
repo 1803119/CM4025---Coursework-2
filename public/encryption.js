@@ -1,4 +1,5 @@
-//let crypto = require('crypto');
+'use strict';
+let crypto = require('crypto');
 
 
 let generateSalt = rounds => {
