@@ -18,8 +18,19 @@
         <input type="password" id="confirmPassword" minlength="8" required>
         <input type="submit" value="Submit" onclick="validatePassword()">
     </form>
-    
-    <script type="module" src="/encryption.js"></script>
+
+    <script type="text/javascript">
+        module.exports = (app) => {
+        const User = require('./user.model')
+        const {
+            generateSalt,
+            hash,
+            compare
+        } = require('/encryption.js');
+        }
+    </script>
+
+    <!-- <script type="text/javascript" src="/encryption.js"></script> -->
     <script language='javascript' type='text/javascript'>
         function validatePassword() {
             if (document.getElementById('password').value != document.getElementById('confirmPassword').value) {
