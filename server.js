@@ -104,9 +104,9 @@ app.route('/register')
     var myPlaintextPassword = "password";
 
     bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+        bcrypt.hash(myPlaintextPassword, salt, function(err, hash1) {
             // Store hash in your password DB.
-            console.log(hash);
+            console.log(hash1);
         });
     });
 
