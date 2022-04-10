@@ -65,7 +65,10 @@ app.route('/login')
         
         bcrypt.compare(data.password, user.password, function(err, success){
             if(success == true){
-                console.log("Was successful");
+                res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
+            }
+            else{
+                res.send("Login details do not match our records");
             }
         
         });
@@ -74,7 +77,7 @@ app.route('/login')
     
 
     
-    res.send('Processing the login form');
+    //res.send('Processing the login form');
     
 });
 
