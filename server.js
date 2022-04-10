@@ -60,16 +60,20 @@ app.route('/login')
     //var inputName = req.body.inputName;
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
-    var user = client.db().collection("users").find({email: data.email}, {_id:0, password:1});
-    console.log(user);
+    client.db().collection("users").findOne({email: data.email}, function(err, user){
+        console.log(user);
+        
+        bcrypt.compare(data.password, user.password, function(err, success){
+            if(success == true){
+                console.log("Was successful");
+            }
+        
+        });
+    });
+    
     
 
-    bcrypt.compare(data.password, user.password, function(err, success){
-        if(success == true){
-            console.log("Was successful");
-        }
-        
-    });
+    
     res.send('Processing the login form');
     
 });
