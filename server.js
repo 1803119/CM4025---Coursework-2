@@ -59,6 +59,17 @@ app.route('/login')
     
 });
 
+module.exports = (app) => {
+    //const User = require('./user.model')
+    const {
+        generateSalt,
+        hash,
+        compare
+    } = require('/public/encryption');
+}
+let salt = generateSalt(12);
+console.log(salt);
+
 app.route('/register')
 .get(function(req, res){
     res.sendFile(__dirname + "/Pages/register copy.html");
