@@ -4,6 +4,10 @@ var app = express();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
+bcrypt.hash('bacon', 8, function(err, hash) {
+    console.log(hash);
+});
+
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
 
