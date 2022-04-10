@@ -109,8 +109,8 @@ app.route('/register')
     var myPlaintextPassword = "password";
     var hashedPass;
 
-    bcrypt.genSaltSync(saltRounds, function(err, salt) {
-        bcrypt.hashSync(data.password, salt, function(err, hash) {
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
             //data.password = hash;
             hashedPass = hash;
