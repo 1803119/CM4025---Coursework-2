@@ -63,8 +63,8 @@ app.route('/login')
     var user = client.db().collection("users").find({email: data.email}, {_id:0, password:1});
 
     bcrypt.compare(data.password, user.password, function(err, success){
-        console.log(success);
-    })
+        console.log("Was successful");
+    });
     res.send('Processing the login form');
     
 });
