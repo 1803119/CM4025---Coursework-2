@@ -107,11 +107,13 @@ app.route('/register')
 
     const saltRounds = 10;
     var myPlaintextPassword = "password";
+    var hashedPass;
 
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
-            data.password = hash;
+            //data.password = hash;
+            hashedPass = hash;
         });
     });
 
@@ -119,7 +121,7 @@ app.route('/register')
     //var lastName = data.lastName;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     
-    client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+    client.db().collection("users").insertOne({firstName: data.firstName, password: hashedPass}, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
         if(err) throw err;
         console.log("User registered");
     });
