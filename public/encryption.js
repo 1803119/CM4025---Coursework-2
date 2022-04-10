@@ -55,10 +55,10 @@ let compare = (password, hash) => {
 };
 console.log(compare('password'))
 
-module.exports = {
-    generateSalt,
-    hash,
-    compare
-}
+// module.exports = {
+//     generateSalt,
+//     hash,
+//     compare
+// }
 
 
