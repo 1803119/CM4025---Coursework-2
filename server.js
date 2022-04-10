@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
