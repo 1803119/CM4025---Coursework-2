@@ -102,7 +102,7 @@ app.route('/login')
             
                 console.log("token:", token);
 
-                res.cookie("token", token, { maxAge: 300 * 1000 });
+                res.cookie("token", token, { maxAge: process.env.JWT_EXPIRY * 1000 });
 
                 //res.json({test: "Testing"});
                 res.redirect("/");
