@@ -5,6 +5,7 @@
 <body>
     
     <h1>Justice for the Uglies</h1>
+    <h3 id="greeting"></h3>
     <nav>
         <ul>
             <li id="nav-li">
@@ -23,6 +24,8 @@
             while(initialButtons.length > 0){
                initialButtons[0].parentNode.removeChild(initialButtons[0]);
             }
+
+            var greeting = document.getElementById("greeting").replaceChild(document.createTextNode("Hello, " + res));
 
             var logoutButton = document.createElement("button");
             logoutButton.appendChild(document.createTextNode("Logout"));
