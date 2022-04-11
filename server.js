@@ -97,8 +97,8 @@ app.route('/login')
 
                 const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
                     algorithm: "HS256",
-                    expiresIn:300,
-                })
+                    expiresIn: process.env.JWT_EXPIRY
+                });
             
                 console.log("token:", token);
 
