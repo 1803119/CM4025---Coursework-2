@@ -215,7 +215,7 @@ function renewToken(oldToken, res){
 			return res.status(401).end()
         }
     }
-
+    console.log(payload.emailAddress);
     const token = jwt.sign({emailAddress: payload.emailAddress}, process.env.JWT_KEY, {
         algorithm: "HS256",
         expiresIn: sessionTimeout
