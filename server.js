@@ -47,16 +47,17 @@ app.get('/', function(req, res){
         res.render('pages/index', {message: "Not logged in"});
     }
 
-    var payload
-    try{
-        payload = jwt.verify(token, process.env.JWT_KEY)
-    }
-    catch (e){
-        if (e instanceof jwt.JsonWebTokenError) {
-			// if the error thrown is because the JWT is unauthorized, return a 401 error
-			return res.status(401).end()
-        }
-    }
+    // var payload
+    // try{
+    //     payload = jwt.verify(token, process.env.JWT_KEY)
+    // }
+    // catch (e){
+    //     if (e instanceof jwt.JsonWebTokenError) {
+	// 		// if the error thrown is because the JWT is unauthorized, return a 401 error
+	// 		return res.status(401).end()
+    //     }
+    // }
+    var payload = renewToken(tokan, res);
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         res.render('pages/index', {message: "Hello, " + result.firstName});
@@ -194,3 +195,28 @@ app.route('/register')
 // start server
 app.listen(PORT);
 console.log('Express Server running');
+
+//--------------------functions
+function renewToken(oldToken, res){
+    var payload
+    try{
+        payload = jwt.verify(oldToken, process.env.JWT_KEY)
+    }
+    catch (e){
+        if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).end()
+        }
+    }
+
+    const token = jwt.sign({emailAddress: payload.emailAddress}, process.env.JWT_KEY, {
+        algorithm: "HS256",
+        expiresIn: sessionTimeout
+    });
+
+    console.log("token:", token);
+
+    res.cookie("token", token, { maxAge: sessionTimeout * 1000 });
+
+    return payload;
+}
