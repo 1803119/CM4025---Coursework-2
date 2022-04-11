@@ -47,19 +47,19 @@ app.get('/', function(req, res){
         res.render('pages/index', {message: "Not logged in"});
     }
 
-    var payload = renewToken(token, res);
-    console.log(payload);
+    //var payload = renewToken(token, res);
+    //console.log(payload);
 
-    // var payload
-    // try{
-    //     payload = jwt.verify(token, process.env.JWT_KEY)
-    // }
-    // catch (e){
-    //     if (e instanceof jwt.JsonWebTokenError) {
-	// 		// if the error thrown is because the JWT is unauthorized, return a 401 error
-	// 		return res.status(401).end()
-    //     }
-    // }
+    var payload
+    try{
+        payload = jwt.verify(token, process.env.JWT_KEY)
+    }
+    catch (e){
+        if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).end()
+        }
+    }
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         console.log(result);
