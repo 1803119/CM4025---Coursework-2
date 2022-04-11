@@ -25,7 +25,8 @@
                initialButtons[0].parentNode.removeChild(initialButtons[0]);
             }
 
-            var greeting = document.getElementById("greeting").replaceChild(document.createTextNode("Hello, " + res));
+            var greeting = document.getElementById("greeting");
+            greeting.innerText = "Hello, " + res;
 
             var logoutButton = document.createElement("button");
             logoutButton.appendChild(document.createTextNode("Logout"));
