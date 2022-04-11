@@ -18,7 +18,7 @@
     </nav>
 
     <script>
-        var res = "<%= data %>";
+        var res = "<%= JSON.stringify(data) %>";
         console.log(res.firstName);
 
         if(res != "Not logged in"){
