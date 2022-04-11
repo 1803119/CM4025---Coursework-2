@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
@@ -13,7 +15,7 @@ const PORT = process.env.PORT || 8080;
 var port = PORT;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGO_URI;
@@ -69,7 +71,6 @@ app.route('/login')
             else{
                 res.send("Login details do not match our records");
             }
-        
         });
     });
     
@@ -117,14 +118,19 @@ app.route('/register')
     res.sendFile(__dirname + "/Pages/register copy.html");
 })
 .post(function(req, res){
-    
-
     console.log(req.body);
     var data = req.body;
 
+    const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
+        algorithm: "HS256",
+        expiresIn:300,
+    })
+
+    console.log("token:", token)
+
     const saltRounds = 10;
-    var myPlaintextPassword = "password";
-    var hashedPass;
+    // var myPlaintextPassword = "password";
+    // var hashedPass;
 
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
@@ -149,8 +155,6 @@ app.route('/register')
     //console.log("Out of Post");
     res.redirect("/");
 });
-
-
 
 // start server
 app.listen(PORT);
