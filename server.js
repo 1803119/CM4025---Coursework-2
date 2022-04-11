@@ -212,7 +212,7 @@ app.route('/myAccount')
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         if(result != undefined){
-            res.render('pages/myAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: emailAddress});
+            res.render('pages/myAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
         }
     });
 })
