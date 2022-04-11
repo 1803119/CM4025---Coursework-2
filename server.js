@@ -61,6 +61,13 @@ app.get('/', function(req, res){
         }
     }
 
+    const newToken = jwt.sign({emailAddress: payload.emailAddress}, process.env.JWT_KEY, {
+        algorithm: "HS256",
+        expiresIn:process.env.JWT_EXPIRY,
+    });
+
+    res.cookie('token', newToken, { maxAge: process.env.JWT_EXPIRY * 1000 });
+
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         console.log(result);
         res.render('pages/index', {message: "Hello, " + result.firstName});
