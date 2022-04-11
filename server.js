@@ -57,7 +57,7 @@ app.get('/', function(req, res){
 	// 		return res.status(401).end()
     //     }
     // }
-    var payload = renewToken(tokan, res);
+    var payload = renewToken(token, res);
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         res.render('pages/index', {message: "Hello, " + result.firstName});
