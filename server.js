@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const ejs = require('ejs');
 
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
@@ -15,7 +16,9 @@ const PORT = process.env.PORT || 8080;
 var port = PORT;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGO_URI;
@@ -34,7 +37,7 @@ client.connect(err => {
 
 // send index.html file as home page
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/Pages/index.html');
+    res.render('pages/index', {test: "Empty"});
 });
 
 // Routes for admin section
@@ -49,7 +52,7 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.sendFile(__dirname + '/Pages/login copy.html');
+    res.sendFile('pages/login copy');
 })
 // Process the form
 .post(function(req, res){
@@ -129,7 +132,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.sendFile(__dirname + "/Pages/register copy.html");
+    res.sendFile('pages/register copy');
 })
 .post(function(req, res){
     console.log(req.body);
