@@ -91,6 +91,10 @@ app.route('/login')
 .post(function(req, res){
     console.log(req.body);
     var data = req.body
+
+    if(data == null || data == undefined){
+        res.send("Login details do not match our records");
+    }
     //var inputName = req.body.inputName;
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
@@ -98,9 +102,9 @@ app.route('/login')
         if(err){
             res.send("Login details do not match our records");
         }
-        //if(user == undefined || user == null || data == null || data ){
-        //    res.send("Login details do not match our records");
-        //}
+        if(user == undefined || user == null){
+            res.send("Login details do not match our records");
+        }
         console.log("Test " + user);
         
         if(user != null){
