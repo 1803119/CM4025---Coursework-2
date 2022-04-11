@@ -3,15 +3,30 @@
     <title>Justice for the Uglies</title>
 </head>
 <body>
+    <script>
+        var res = <%= data %>;
+
+        if(res != "Not logged in"){
+            var initialButtons = document.getElementsByClassName("initialButtons");
+            while(initialButtons.length > 0){
+                initialButtons[0].parentNode.removeChild(initialButtons[0]);
+            }
+        }
+
+
+
+    </script>
     <h1>Justice for the Uglies</h1>
     <nav>
         <ul>
-            <li>
-                <a href="/login">Login</a>
-                <a href="/register">Register a New Account</a>
+            <li id="nav-li">
+                <a class="initalButtons" href="/login">Login</a>
+                
+            </li>
+            <li id="nav-li">
+                <a class="initialButtons" href="/register">Register a New Account</a>
             </li>
         </ul>
     </nav>
-    <h2><%= message %></h2>
 </body>
 </html>

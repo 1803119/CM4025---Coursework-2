@@ -44,7 +44,7 @@ app.get('/', function(req, res){
     const token = req.cookies.token;
 
     if(!token){
-        res.render('pages/index', {message: "Not logged in"});
+        res.render('pages/index', {data: "Not logged in"});
     }
 
     // var payload
@@ -59,8 +59,10 @@ app.get('/', function(req, res){
     // }
     var payload = renewToken(token, res);
 
+
+
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-        res.render('pages/index', {message: "Hello, " + result.firstName});
+        res.render('pages/index', {data: "Hello, " + result.firstName});
     })
 
     
