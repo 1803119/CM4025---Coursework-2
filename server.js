@@ -82,7 +82,7 @@ app.route('/login')
 
                 //res.json({test: "Testing"});
 
-                res.render('index', {test: "test"});
+                res.render('pages/index', {test: "test"});
                 //res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
             }
             else{
