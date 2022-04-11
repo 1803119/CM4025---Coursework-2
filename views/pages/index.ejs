@@ -30,8 +30,9 @@
 
             var logoutLink = document.createElement("a");
             logoutLink.appendChild(document.createTextNode("Logout"));
-            logoutLink.href = "/";
             logoutLink.onclick(deleteTokenCookie());
+            logoutLink.href = "/";
+            
             document.getElementById("nav-li").appendChild(logoutLink);
             console.log(document.cookie);
             
