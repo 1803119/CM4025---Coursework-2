@@ -18,8 +18,8 @@
     </nav>
 
     <script>
-        var res = "<%- JSON.stringify(JSON.parse(data)) %>";
-        console.log(res.firstName);
+        var res = "<%- firstName %>";
+        console.log(res);
 
         if(res != "Not logged in"){
             var initialButtons = document.getElementsByClassName("initialButtons");
