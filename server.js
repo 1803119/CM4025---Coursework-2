@@ -62,7 +62,7 @@ app.get('/', function(req, res){
 
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-        res.render('pages/index', {data: "Hello, " + result.firstName});
+        res.render('pages/index', {data: result});
     })
 
     
@@ -75,6 +75,8 @@ adminRouter.get('/', function(req, res){
 });
 
 app.use('/admin', adminRouter);
+
+
 
 // route for login
 app.route('/login')
