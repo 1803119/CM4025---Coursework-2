@@ -19,7 +19,8 @@
     "ejs": "^3.1.6",
     "express": "~4.13.4",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.4.1"
+    "mongodb": "^4.4.1",
+    "nocache": "^3.0.3"
   },
   "license": "ISC",
   "bugs": {

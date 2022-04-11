@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const ejs = require('ejs');
+const nocache = require('nocache');
+
+app.use(nocache());
 
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
@@ -225,6 +228,10 @@ userAccountRouter.get("/",function(req, res){
     });
 });
 
+userAccountRouter.post("/", function(req, res){
+
+})
+
 userAccountRouter.get("/editAccount", function(req, res){
     const token = req.cookies.token;
 
@@ -241,7 +248,8 @@ userAccountRouter.get("/editAccount", function(req, res){
         }
     });
     //res.send("Edit account details page");
-})
+});
+
 
 app.use('/myAccount', userAccountRouter)
 
