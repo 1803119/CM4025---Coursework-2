@@ -38,7 +38,7 @@ client.connect(err => {
 
 // send index.html file as home page
 app.get('/', function(req, res){
-    console.log(req);
+    //console.log(req);
     
 
     const token = req.cookies.token;
@@ -62,6 +62,7 @@ app.get('/', function(req, res){
     // }
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+        console.log(result);
         res.render('pages/index', {message: "Hello, " + result.firstName});
     })
 
