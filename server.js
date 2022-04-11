@@ -66,6 +66,15 @@ app.route('/login')
         
         bcrypt.compare(data.password, user.password, function(err, success){
             if(success == true){
+
+
+                const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
+                    algorithm: "HS256",
+                    expiresIn:300,
+                })
+            
+                console.log("token:", token)
+
                 res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
             }
             else{
@@ -120,13 +129,6 @@ app.route('/register')
 .post(function(req, res){
     console.log(req.body);
     var data = req.body;
-
-    const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
-        algorithm: "HS256",
-        expiresIn:300,
-    })
-
-    console.log("token:", token)
 
     const saltRounds = 10;
     // var myPlaintextPassword = "password";
