@@ -95,11 +95,11 @@ app.route('/login')
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     client.db().collection("users").findOne({emailAddress: data.emailAddress}, function(err, user){
-        if(user == undefined){
+        if(user == undefined || data == undefined){
             res.send("Login details do not match our records");
         }
         console.log(user);
-        
+
         bcrypt.compare(data.password, user.password, function(err, success){
             if(success == true){
 
