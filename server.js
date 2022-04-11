@@ -37,7 +37,25 @@ client.connect(err => {
 
 // send index.html file as home page
 app.get('/', function(req, res){
-    res.render('pages/index', {test: "Empty"});
+
+    const token = req.cookies.token;
+
+    if(!token){
+        res.render('pages/index', {test: "Not logged in"});
+    }
+
+    var payload
+    try{
+        payload = jwt.verify(token, process.env.JWT_KEY)
+    }
+    catch (e){
+        if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).end()
+        }
+    }
+
+    res.render('pages/index', {test: "Logged in"});
 });
 
 // Routes for admin section
@@ -81,8 +99,8 @@ app.route('/login')
                 res.cookie("token", token, { maxAge: 300 * 1000 });
 
                 //res.json({test: "Testing"});
-
-                res.render('pages/index', {test: "test"});
+                res.redirect("/");
+                //res.render('pages/index', {email: data.emailAddress});
                 //res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
             }
             else{
