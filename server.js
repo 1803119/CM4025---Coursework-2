@@ -39,13 +39,15 @@ client.connect(err => {
 // send index.html file as home page
 app.get('/', function(req, res){
     console.log(req);
-    var payload = renewToken(req, res);
+    
 
-    // const token = req.cookies.token;
+    const token = req.cookies.token;
 
-    // if(!token){
-    //     res.render('pages/index', {message: "Not logged in"});
-    // }
+    if(!token){
+        res.render('pages/index', {message: "Not logged in"});
+    }
+
+    var payload = renewToken(token, res);
 
 
 
@@ -198,12 +200,7 @@ app.listen(PORT);
 console.log('Express Server running');
 
 //-----------------------------Functions---------------------------------
-function renewToken(req, res){
-    const oldToken = req.cookies.token;
-
-    if(!oldToken){
-        res.send("Not logged in");
-    }
+function renewToken(oldToken, res){
 
     var payload
     try{
