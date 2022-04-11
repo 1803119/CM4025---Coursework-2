@@ -97,12 +97,12 @@ app.route('/login')
 
                 const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
                     algorithm: "HS256",
-                    expiresIn:process.env.JWT_EXPIRY,
+                    expiresIn:300,
                 })
             
                 console.log("token:", token);
 
-                res.cookie("token", token, { maxAge: process.env.JWT_EXPIRY * 1000 });
+                res.cookie("token", token, { maxAge: 300 * 1000 });
 
                 //res.json({test: "Testing"});
                 res.redirect("/");
