@@ -37,6 +37,7 @@ client.connect(err => {
 
 // send index.html file as home page
 app.get('/', function(req, res){
+    console.log(req);
 
     const token = req.cookies.token;
 
