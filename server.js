@@ -95,6 +95,9 @@ app.route('/login')
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     client.db().collection("users").findOne({emailAddress: data.emailAddress}, function(err, user){
+        if(err){
+            res.send("Login details do not match our records");
+        }
         if(user == undefined || user == null || data == null){
             res.send("Login details do not match our records");
         }
