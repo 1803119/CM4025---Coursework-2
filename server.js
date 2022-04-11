@@ -73,7 +73,9 @@ app.route('/login')
                     expiresIn:300,
                 })
             
-                console.log("token:", token)
+                console.log("token:", token);
+
+                res.cookie("token", token, { maxAge: 300 * 1000 });
 
                 res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
             }
