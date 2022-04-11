@@ -31,13 +31,18 @@
             var logoutLink = document.createElement("a");
             logoutLink.appendChild(document.createTextNode("Logout"));
             logoutLink.href = "/";
+            logoutLink.onclick(deleteTokenCookie());
             document.getElementById("nav-li").appendChild(logoutLink);
             console.log(document.cookie);
+            
+
+            
             //document.getElementById("loginButton").remove();
         }
 
-
-
+        function deleteTokenCookie(){
+            document.cookie = "token=; expires=Thuu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
     </script>
 </body>
 </html>
