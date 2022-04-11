@@ -52,7 +52,7 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.sendFile('pages/login copy');
+    res.render('pages/login copy');
 })
 // Process the form
 .post(function(req, res){
@@ -132,7 +132,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.sendFile('pages/register copy');
+    res.render('pages/register copy');
 })
 .post(function(req, res){
     console.log(req.body);
