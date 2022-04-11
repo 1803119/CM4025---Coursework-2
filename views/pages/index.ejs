@@ -9,9 +9,6 @@
         <ul>
             <li id="nav-li">
                 <a class="initialButtons" id="loginButton" href="/login">Login</a>
-                
-            </li>
-            <li id="nav-li">
                 <a class="initialButtons" href="/register">Register a New Account</a>
             </li>
         </ul>
@@ -26,6 +23,10 @@
             while(initialButtons.length > 0){
                initialButtons[0].parentNode.removeChild(initialButtons[0]);
             }
+
+            var logoutButton = document.createElement("button");
+            logoutButton.appendChild(document.createTextNode("Logout"));
+            document.getElementById("nav-li").appendChild(logoutButton);
             //document.getElementById("loginButton").remove();
         }
 
