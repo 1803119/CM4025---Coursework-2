@@ -4,10 +4,6 @@ var app = express();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
-bcrypt.hash('bacon', 8, function(err, hash) {
-    console.log(hash);
-});
-
 //const MongoClient = require('mongodb').MongoClient;
 //const { ObjectId } = require('mongodb');
 
@@ -61,6 +57,9 @@ app.route('/login')
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     client.db().collection("users").findOne({emailAddress: data.emailAddress}, function(err, user){
+        if(err){
+            res.status(400).send("Account not found");
+        }
         console.log(user);
         
         bcrypt.compare(data.password, user.password, function(err, success){
