@@ -3,20 +3,7 @@
     <title>Justice for the Uglies</title>
 </head>
 <body>
-    <script>
-        var res = "<%= data %>";
-
-        if(res != "Not logged in"){
-            //var initialButtons = document.getElementsByClassName("initialButtons");
-            //while(initialButtons.length > 0){
-            //    initialButtons[0].parentNode.removeChild(initialButtons[0]);
-            //}
-            document.getElementById("loginButton").remove();
-        }
-
-
-
-    </script>
+    
     <h1>Justice for the Uglies</h1>
     <nav>
         <ul>
@@ -29,5 +16,20 @@
             </li>
         </ul>
     </nav>
+
+    <script>
+        var res = "<%= data %>";
+
+        if(res != "Not logged in"){
+            var initialButtons = document.getElementsByClassName("initialButtons");
+            while(initialButtons.length > 0){
+               initialButtons[0].parentNode.removeChild(initialButtons[0]);
+            }
+            //document.getElementById("loginButton").remove();
+        }
+
+
+
+    </script>
 </body>
 </html>
