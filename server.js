@@ -85,7 +85,7 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.render('pages/login copy');
+    res.render('pages/login');
 })
 // Process the form
 .post(function(req, res){
@@ -165,7 +165,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.render('pages/register copy');
+    res.render('pages/register');
 })
 .post(function(req, res){
     console.log(req.body);

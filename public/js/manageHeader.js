@@ -1,6 +1,6 @@
 
-function manageHeader(){
-    var res = "<%- firstName %>";
+function manageHeader(res){
+
     console.log(res);
 
     if(res != "Not logged in"){
