@@ -77,7 +77,9 @@ app.route('/login')
 
                 res.cookie("token", token, { maxAge: 300 * 1000 });
 
-                res.render('/admin');
+                res.json({test: "Testing"});
+
+                res.redirect('/admin');
                 //res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
             }
             else{
