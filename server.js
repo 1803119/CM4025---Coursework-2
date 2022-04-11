@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 8080;
 
 // Set the port based on environment
 var port = PORT;
+const sessionTimeout = 600;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -97,12 +98,12 @@ app.route('/login')
 
                 const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
                     algorithm: "HS256",
-                    expiresIn: process.env.JWT_EXPIRY
+                    expiresIn: sessionTimeout
                 });
             
                 console.log("token:", token);
 
-                res.cookie("token", token, { maxAge: process.env.JWT_EXPIRY * 1000 });
+                res.cookie("token", token, { maxAge: sessionTimeout * 1000 });
 
                 //res.json({test: "Testing"});
                 res.redirect("/");
