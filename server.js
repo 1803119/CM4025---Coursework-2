@@ -38,17 +38,13 @@ client.connect(err => {
 
 // send index.html file as home page
 app.get('/', function(req, res){
-    //console.log(req);
-    
+    console.log(req);
 
     const token = req.cookies.token;
 
     if(!token){
         res.render('pages/index', {message: "Not logged in"});
     }
-
-    //var payload = renewToken(token, res);
-    //console.log(payload);
 
     var payload
     try{
@@ -61,15 +57,7 @@ app.get('/', function(req, res){
         }
     }
 
-    // const newToken = jwt.sign({emailAddress: payload.emailAddress}, process.env.JWT_KEY, {
-    //     algorithm: "HS256",
-    //     expiresIn:process.env.JWT_EXPIRY,
-    // });
-
-    // res.cookie('token', newToken, { maxAge: process.env.JWT_EXPIRY * 1000 });
-
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-        console.log(result);
         res.render('pages/index', {message: "Hello, " + result.firstName});
     })
 
@@ -114,7 +102,7 @@ app.route('/login')
             
                 console.log("token:", token);
 
-                res.cookie("token", token, { maxAge: process.env.JWT_EXPIRY * 1000 });
+                res.cookie("token", token, { maxAge: JWT_EXPIRY * 1000 });
 
                 //res.json({test: "Testing"});
                 res.redirect("/");
@@ -205,26 +193,3 @@ app.route('/register')
 // start server
 app.listen(PORT);
 console.log('Express Server running');
-
-//-----------------------------Functions---------------------------------
-function renewToken(oldToken, res){
-
-    var payload
-    try{
-        payload = jwt.verify(oldToken, process.env.JWT_KEY)
-    }
-    catch (e){
-        if (e instanceof jwt.JsonWebTokenError) {
-			// if the error thrown is because the JWT is unauthorized, return a 401 error
-			return res.status(401).end()
-        }
-    }
-
-    const newToken = jwt.sign({emailAddress: payload.emailAddress}, process.env.JWT_KEY, {
-        algorithm: "HS256",
-        expiresIn:process.env.JWT_EXPIRY,
-    });
-
-    res.cookie('token', newToken, { maxAge: process.env.JWT_EXPIRY * 1000 });
-    return payload;
-}
