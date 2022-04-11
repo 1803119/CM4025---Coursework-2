@@ -28,9 +28,9 @@
             var greeting = document.getElementById("greeting");
             greeting.innerText = "Hello, " + res;
 
-            var logoutButton = document.createElement("button");
-            logoutButton.appendChild(document.createTextNode("Logout"));
-            document.getElementById("nav-li").appendChild(logoutButton);
+            var logoutLink = document.createElement("a");
+            logoutLink.appendChild(document.createTextNode("Logout"));
+            document.getElementById("nav-li").appendChild(logoutLink);
             //document.getElementById("loginButton").remove();
         }
 
