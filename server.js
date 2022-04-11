@@ -39,7 +39,7 @@ client.connect(err => {
 // send index.html file as home page
 app.get('/', function(req, res){
     console.log(req);
-    var payload = renewToken();
+    var payload = renewToken(req, res);
 
     // const token = req.cookies.token;
 
@@ -198,7 +198,7 @@ app.listen(PORT);
 console.log('Express Server running');
 
 //-----------------------------Functions---------------------------------
-function renewToken(){
+function renewToken(req, res){
     const oldToken = req.cookies.token;
 
     if(!oldToken){
