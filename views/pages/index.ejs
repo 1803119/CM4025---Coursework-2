@@ -30,7 +30,9 @@
 
             var logoutLink = document.createElement("a");
             logoutLink.appendChild(document.createTextNode("Logout"));
-            logoutLink.onclick(deleteTokenCookie());
+            logoutLink.onclick = function(){
+                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
             logoutLink.href = "/";
             
             document.getElementById("nav-li").appendChild(logoutLink);
@@ -39,10 +41,6 @@
 
             
             //document.getElementById("loginButton").remove();
-        }
-
-        function deleteTokenCookie(){
-            document.cookie = "token=; expires=Thuu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
     </script>
 </body>
