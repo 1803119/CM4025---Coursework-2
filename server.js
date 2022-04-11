@@ -47,18 +47,19 @@ app.get('/', function(req, res){
         res.render('pages/index', {message: "Not logged in"});
     }
 
-    //var payload = renewToken(token, res);
+    var payload = renewToken(token, res);
+    console.log(payload);
 
-     var payload
-    try{
-        payload = jwt.verify(token, process.env.JWT_KEY)
-    }
-    catch (e){
-        if (e instanceof jwt.JsonWebTokenError) {
-			// if the error thrown is because the JWT is unauthorized, return a 401 error
-			return res.status(401).end()
-        }
-    }
+    // var payload
+    // try{
+    //     payload = jwt.verify(token, process.env.JWT_KEY)
+    // }
+    // catch (e){
+    //     if (e instanceof jwt.JsonWebTokenError) {
+	// 		// if the error thrown is because the JWT is unauthorized, return a 401 error
+	// 		return res.status(401).end()
+    //     }
+    // }
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         res.render('pages/index', {message: "Hello, " + result.firstName});
@@ -105,7 +106,7 @@ app.route('/login')
             
                 console.log("token:", token);
 
-                res.cookie("token", token, { maxAge: JWT_EXPIRY * 1000 });
+                res.cookie("token", token, { maxAge: process.env.JWT_EXPIRY * 1000 });
 
                 //res.json({test: "Testing"});
                 res.redirect("/");
@@ -216,6 +217,6 @@ function renewToken(oldToken, res){
         expiresIn:process.env.JWT_EXPIRY,
     });
 
-    res.cookie('token', newToken, { maxAge: JWT_EXPIRY * 1000 });
+    res.cookie('token', newToken, { maxAge: process.env.JWT_EXPIRY * 1000 });
     return payload;
 }
