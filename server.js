@@ -57,7 +57,7 @@ app.route('/login')
     //var inputAge = req.body.inputAge;
     //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
     client.db().collection("users").findOne({emailAddress: data.emailAddress}, function(err, user){
-        if(err){
+        if(user == undefined){
             res.status(400).send("Account not found");
         }
         console.log(user);
