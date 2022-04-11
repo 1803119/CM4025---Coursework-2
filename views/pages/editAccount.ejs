@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Account</title>
+    </head>
+    <body>
+        <header>
+            <%- include("../partials/header") %>
+        </header>
+        <main>
+            <form method="POST" action="/myAccount">
+                <label for="firstName">First Name: </label>
+                <input type="text" id="firstName" name="firstName" required>
+                <label for="lastName">Last Name: </label>
+                <input type="text" id="lastName" name="lastName" required>
+                <label for="dateOfBirth">Date of Birth: </label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth">
+                <input type="submit" value="Submit">
+            </form>
+        </main>
+        <script type="text/javascript" src="/js/manageHeader.js"></script>
+        <script>
+            var res = "<%- firstName %>";
+            manageHeader(res);
+            document.getElementById("firstName").value = "<%- firstName %>";
+            document.getElementById("lastName").value = "<%- lastName %>";
+            document.getElementById("dateOfBirth").value = "<%- dateOfBirth %>";
+        </script>
+    </body>
+</html>

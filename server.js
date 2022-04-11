@@ -226,7 +226,21 @@ userAccountRouter.get("/",function(req, res){
 });
 
 userAccountRouter.get("/editAccount", function(req, res){
-    res.send("Edit account details page");
+    const token = req.cookies.token;
+
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+        if(result != undefined){
+            res.render('pages/editAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
+        }
+    });
+    //res.send("Edit account details page");
 })
 
 app.use('/myAccount', userAccountRouter)
