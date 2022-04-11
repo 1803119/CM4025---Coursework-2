@@ -8,7 +8,11 @@
             <%- include('../partials/header') %>
         </header>
 
-        
+        <script type="text/javascript" src="/js/manageHeader.js"></script>
+        <script>
+            var res = "<%- firstName %>";
+            manageHeader(res);
+        </script>
 
     </body>
 </html>

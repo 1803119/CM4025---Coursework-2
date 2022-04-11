@@ -4,25 +4,33 @@ function manageHeader(res){
     console.log(res);
 
     if(res != "Not logged in"){
-        var initialButtons = document.getElementsByClassName("initialButtons");
+        var loggedOutButtons = document.getElementsByClassName("loggedOutButtons");
         
-        while(initialButtons.length > 0){
-            initialButtons[0].parentNode.removeChild(initialButtons[0]);
+        while(loggedOutButtons.length > 0){
+            loggedOutButtons[0].parentNode.removeChild(loggedOutButtons[0]);
         }
 
         var greeting = document.getElementById("greeting");
         greeting.innerText = "Hello, " + res;
 
-        var logoutLink = document.createElement("a");
-        logoutLink.appendChild(document.createTextNode("Logout"));
+        var logoutButton = document.getElementById("logOutButton");
 
-        logoutLink.onclick = function(){
+        //logoutLink.appendChild(document.createTextNode("Logout"));
+
+        logoutButton.onclick = function(){
             document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
 
-        logoutLink.href = "/";
+        //logoutLink.href = "/";
                     
-        document.getElementById("nav-li").appendChild(logoutLink);
+        //document.getElementById("nav-li").appendChild(logoutLink);
+    }
+    else{
+        var loggedInButtons = document.getElementsByClassName("loggedInButtons");
+
+        while(loggedInButtons.length > 0){
+            loggedInButtons[0].parentNode.removeChild(loggedInButtons[0]);
+        }
     }
 }
 // module.exports = {

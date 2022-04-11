@@ -39,7 +39,7 @@ client.connect(err => {
 
 // send index.html file as home page
 app.get('/', function(req, res){
-    console.log(req);
+    //console.log(req);
 
     const token = req.cookies.token;
 
@@ -66,7 +66,7 @@ app.get('/', function(req, res){
             res.render('pages/index', {firstName: result.firstName});
         }
         
-    })
+    });
 
     
 });
@@ -199,9 +199,42 @@ app.route('/register')
     res.redirect("/");
 });
 
+
+app.route('/myAccount')
+.get(function(req, res){
+    const token = req.cookies.token;
+
+    if(!token){
+        res.render('pages/index', {firstName: "Not logged in"});
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+        if(result != undefined){
+            res.render('pages/myAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: emailAddress});
+        }
+    });
+})
+.post(function(req, res){
+
+});
+
+
+
+
+
+
+
+
 // start server
 app.listen(PORT);
 console.log('Express Server running');
+
+
+
+
+
 
 //--------------------functions
 function renewToken(oldToken, res){
