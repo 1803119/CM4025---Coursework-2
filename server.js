@@ -98,12 +98,12 @@ app.route('/login')
         if(err){
             res.send("Login details do not match our records");
         }
-        if(user == undefined || user == null || data == null){
-            res.send("Login details do not match our records");
-        }
+        //if(user == undefined || user == null || data == null || data ){
+        //    res.send("Login details do not match our records");
+        //}
         console.log("Test " + user);
+        
         if(user != null){
-
             bcrypt.compare(data.password, user.password, function(err, success){
                 if(err){
                     res.send("Error");
