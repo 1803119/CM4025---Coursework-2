@@ -25,6 +25,6 @@ function manageHeader(){
         document.getElementById("nav-li").appendChild(logoutLink);
     }
 }
-module.exports = {
-    manageHeader
-}
+// module.exports = {
+//     manageHeader
+// }
