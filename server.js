@@ -77,7 +77,8 @@ app.route('/login')
 
                 res.cookie("token", token, { maxAge: 300 * 1000 });
 
-                res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
+                res.render('/admin');
+                //res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
             }
             else{
                 res.send("Login details do not match our records");
