@@ -3,7 +3,7 @@ function manageHeader(res){
 
     console.log(res);
 
-    if(res != "Not logged in"){
+    if(res != "Not logged in" && res != undefined){
         var loggedOutButtons = document.getElementsByClassName("loggedOutButtons");
         
         while(loggedOutButtons.length > 0){

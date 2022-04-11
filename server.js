@@ -218,7 +218,8 @@ app.route('/myAccount')
     const token = req.cookies.token;
 
     if(!token){
-        res.render('pages/index', {firstName: "Not logged in"});
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
     }
 
     var payload = renewToken(token, res);
