@@ -7,10 +7,11 @@
         var res = "<%= data %>";
 
         if(res != "Not logged in"){
-            var initialButtons = document.getElementsByClassName("initialButtons");
-            while(initialButtons.length > 0){
-                initialButtons[0].parentNode.removeChild(initialButtons[0]);
-            }
+            //var initialButtons = document.getElementsByClassName("initialButtons");
+            //while(initialButtons.length > 0){
+            //    initialButtons[0].parentNode.removeChild(initialButtons[0]);
+            //}
+            document.getElementById("loginButton").remove();
         }
 
 
@@ -20,7 +21,7 @@
     <nav>
         <ul>
             <li id="nav-li">
-                <a class="initialButtons" href="/login">Login</a>
+                <a class="initialButtons" id="loginButton" href="/login">Login</a>
                 
             </li>
             <li id="nav-li">
