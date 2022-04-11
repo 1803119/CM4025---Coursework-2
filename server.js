@@ -102,32 +102,35 @@ app.route('/login')
             res.send("Login details do not match our records");
         }
         console.log("Test " + user);
+        if(user != null){
 
-        bcrypt.compare(data.password, user.password, function(err, success){
-            if(err){
-                res.send("Error");
-            }
-            if(success == true){
+            bcrypt.compare(data.password, user.password, function(err, success){
+                if(err){
+                    res.send("Error");
+                }
+                if(success == true){
 
 
-                const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
-                    algorithm: "HS256",
-                    expiresIn: sessionTimeout
-                });
-            
-                console.log("token:", token);
+                    const token = jwt.sign({emailAddress: data.emailAddress}, process.env.JWT_KEY, {
+                        algorithm: "HS256",
+                        expiresIn: sessionTimeout
+                    });
+                
+                    console.log("token:", token);
 
-                res.cookie("token", token, { maxAge: sessionTimeout * 1000 });
+                    res.cookie("token", token, { maxAge: sessionTimeout * 1000 });
 
-                //res.json({test: "Testing"});
-                res.redirect("/");
-                //res.render('pages/index', {email: data.emailAddress});
-                //res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
-            }
-            else{
-                res.send("Login details do not match our records");
-            }
-        });
+                    //res.json({test: "Testing"});
+                    res.redirect("/");
+                    //res.render('pages/index', {email: data.emailAddress});
+                    //res.send("Successfully logged in as " + user.firstName + " " + user.lastName);
+                }
+                else{
+                    res.send("Login details do not match our records");
+                }
+            });
+        }
+        
     });
     
     
