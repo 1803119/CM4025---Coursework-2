@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-<head>
-    <title>Justice for the Uglies</title>
-</head>
-<body>
-    
-    <h1>Justice for Ugly Animals</h1>
-    <nav>
-        <ul>
-            <li id="nav-li">
-                <a class="initialButtons" id="loginButton" href="/login">Login</a>
-                <a class="initialButtons" href="/register">Register a New Account</a>
-            </li>
-        </ul>
-        <h4 id="greeting"></h4>
-    </nav>
+<html>
+    <head>
+        <title>Justice for Ugly Animals</title>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header') %>
+        </header>
+        
+        <!-- <h1>Justice for Ugly Animals</h1>
+        <nav>
+            <ul>
+                <li id="nav-li">
+                    <a class="initialButtons" id="loginButton" href="/login">Login</a>
+                    <a class="initialButtons" href="/register">Register a New Account</a>
+                </li>
+            </ul>
+            <h4 id="greeting"></h4>
+        </nav> -->
 
-    <script>
-        var res = "<%- firstName %>";
-        console.log(res);
+        <script src="/js/manageHeader">
+            manageHeader();
+            // var res = "<%- firstName %>";
+            // console.log(res);
 
-        if(res != "Not logged in"){
-            var initialButtons = document.getElementsByClassName("initialButtons");
-            while(initialButtons.length > 0){
-               initialButtons[0].parentNode.removeChild(initialButtons[0]);
-            }
+            // if(res != "Not logged in"){
+            //     var initialButtons = document.getElementsByClassName("initialButtons");
+            //     while(initialButtons.length > 0){
+            //     initialButtons[0].parentNode.removeChild(initialButtons[0]);
+            //     }
 
-            var greeting = document.getElementById("greeting");
-            greeting.innerText = "Hello, " + res;
+            //     var greeting = document.getElementById("greeting");
+            //     greeting.innerText = "Hello, " + res;
 
-            var logoutLink = document.createElement("a");
-            logoutLink.appendChild(document.createTextNode("Logout"));
-            logoutLink.onclick = function(){
-                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            }
-            logoutLink.href = "/";
-            
-            document.getElementById("nav-li").appendChild(logoutLink);
-            
+            //     var logoutLink = document.createElement("a");
+            //     logoutLink.appendChild(document.createTextNode("Logout"));
+            //     logoutLink.onclick = function(){
+            //         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            //     }
+            //     logoutLink.href = "/";
+                
+            //     document.getElementById("nav-li").appendChild(logoutLink);
+                
 
-            
-            //document.getElementById("loginButton").remove();
-        }
-    </script>
-</body>
+                
+            //     //document.getElementById("loginButton").remove();
+            // }
+        </script>
+    </body>
 </html>
