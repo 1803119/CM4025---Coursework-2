@@ -62,7 +62,7 @@ app.get('/', function(req, res){
 
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-        res.render('pages/index', {data: result});
+        res.render('pages/index', {firstName: result.firstName});
     })
 
     
