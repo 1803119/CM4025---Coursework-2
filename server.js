@@ -43,7 +43,7 @@ app.get('/', function(req, res){
     const token = req.cookies.token;
 
     if(!token){
-        res.render('pages/index', {test: "Not logged in"});
+        res.render('pages/index', {message: "Not logged in"});
     }
 
     var payload
@@ -57,7 +57,11 @@ app.get('/', function(req, res){
         }
     }
 
-    res.render('pages/index', {test: "Logged in"});
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+        res.render('pages/index', {message: "Hello, " + result.firstName});
+    })
+
+    
 });
 
 // Routes for admin section
