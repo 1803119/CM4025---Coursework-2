@@ -7,7 +7,12 @@
         <header>
             <%- include('../partials/header') %>
         </header>
-
+        <main>
+            <h5>First Name: <%= firstName %></h5>
+            <h5>Last Name: <%= lastName %></h5>
+            <h5>Date of Birth: <%= dateOfBirth %></h5>
+            <h5>Email Address: <%= emailAddress %></h5>
+        </main>
         <script type="text/javascript" src="/js/manageHeader.js"></script>
         <script>
             var res = "<%- firstName %>";
