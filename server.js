@@ -291,6 +291,7 @@ app.route('/comments')
         if(result != undefined){
             client.db().collection("comments").find({}).toArray(function(commentErr, commentResults){
                 if(err) throw err;
+                console.log(commentResults);
                 res.render('pages/comments', {firstName: result.firstName, comments: commentResults});
             });
             
