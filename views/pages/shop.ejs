@@ -27,10 +27,10 @@
                             <input type="text" name="itemName" value="<%=item.itemName %>" hidden>
                             <input type="text" name="itemDescription" value="<%=item.itemDescription %>" hidden>
                             <input type="text" name="itemCost" value="<%=item.itemCost %>" hidden>
-                            <input type="text" name="itemStock" value="<%=item.itemStock %>" hidden>
+                            <input type="text" id="itemStock" name="itemStock" value="<%=item.itemStock %>" hidden>
                             <label for="quantity">Quantity: </label>
                             <input type="text" id="quantity" name="quantity" value="1">
-                            <input type="submit" value="Add to Cart" onclick="accountValidation()">
+                            <input type="submit" value="Add to Cart" onclick="return validation()">
                         </form>
                     </li>
                     <% }); %>
@@ -41,9 +41,17 @@
             var res = "<%- firstName %>";
             manageHeader(res);
 
-            function accountValidation(){
+            function validation(){
                 if(res == "Not logged in" || res == undefined){
                     alert("You must be logged in to make a purchase");
+                    return false;
+
+                }
+                else{
+                    if(document.getElementById("itemStock").innerText == 0){
+                        alert("Item is out of stock");
+                        return false;
+                    }
                 }
             }
 
