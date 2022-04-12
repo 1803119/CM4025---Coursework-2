@@ -452,14 +452,11 @@ app.route('/cart')
     //     }
     // });
         console.log(newCart);
-    //client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: newCart}}, function(err1, res1){
-                res.redirect("/cart");
+        client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: newCart}}, function(err1, res1){
+            res.redirect("/cart");
+        });
     });
-
-    
-    //});
-
-})
+});
 
 
 
