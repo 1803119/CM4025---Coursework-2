@@ -277,27 +277,31 @@ app.use('/myAccount', userAccountRouter)
 
 app.route('/comments')
 .get(function(req, res){
+    
+    client.db().collection("comments").find({}).toArray(function(commentErr, commentResults){
+        if(err) throw err;
+        //console.log(commentResults);
 
-    const token = req.cookies.token;
+        const token = req.cookies.token;
 
-    if(!token){
-        //res.render('pages/index', {firstName: "Not logged in"});
-        res.render("pages/comments", {firstName: "Not logged in"});
-    }
-
-    var payload = renewToken(token, res);
-
-    client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-        if(result != undefined){
-            client.db().collection("comments").find({}).toArray(function(commentErr, commentResults){
-                if(err) throw err;
-                console.log(commentResults);
-                res.render('pages/comments', {firstName: result.firstName, comments: commentResults});
-            });
-            
+        if(!token){
+            //res.render('pages/index', {firstName: "Not logged in"});
+            res.render("pages/comments", {firstName: "Not logged in"});
         }
+
+        var payload = renewToken(token, res);
+
+        client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+            if(result != undefined){
+            
+                res.render('pages/comments', {firstName: result.firstName, comments: commentResults});
+            
+            }
         
+        });
     });
+
+    
 })
 
 
