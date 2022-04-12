@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comments</title>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header') %>
+        </header>
+        <main>
+            <div>
+                <form>
+                    <label for="commentInput">Comment:</label>
+                    <input type="text" id="commentInput" name="commentInput">
+                </form>
+                
+            </div>
+            
+        </main>
+        <script type="text/javascript" src="/js/manageHeader.js"></script>
+        <script>
+            var res = "<%- firstName %>";
+            manageHeader(res);
+        </script>
+    </body>
+</html>

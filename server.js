@@ -168,37 +168,6 @@ app.route('/login')
     
 });
 
-// app.get('/register', function(req, res){
-//     res.sendFile(__dirname + "/Pages/register copy.html");
-// });
-
-// module.exports = (app) => {
-//     //const User = require('./user.model')
-//     const {
-//         generateSalt,
-//         hash,
-//         compare
-//     } = require('/public/encryption');
-//     let salt = generateSalt(12);
-//     console.log("Hello");
-//     app.post('/register', function(req, res){
-//         console.log(req.body);
-//         var data = req.body;
-    
-//         var firstName = data.firstName;
-//         var lastName = data.lastName;
-//         //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
-        
-//         client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-//             if(err) throw err;
-//             console.log("User registered");
-//         });
-//         console.log("Out of Post");
-//         res.redirect("/");
-//     });
-// }
-//console.log(salt);
-
 
 app.route('/register')
 .get(function(req, res){
@@ -224,15 +193,6 @@ app.route('/register')
         });
     });
 
-    //var firstName = data.firstName;
-    //var lastName = data.lastName;
-    //console.log("The parmeters are Name: " + inputName + ", Age: " + inputAge);
-    
-    // client.db().collection("users").insertOne({firstName: data.firstName, password: hashedPass}, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-    //     if(err) throw err;
-    //     console.log("User registered");
-    // });
-    //console.log("Out of Post");
     res.redirect("/");
 });
 
@@ -315,7 +275,25 @@ app.use('/myAccount', userAccountRouter)
 
 // });
 
+app.route('/comments')
+.get(function(req, res){
 
+    const token = req.cookies.token;
+
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+        if(result != undefined){
+            res.render('pages/comments', {firstName: result.firstName});
+        }
+        
+    });
+})
 
 
 
@@ -331,7 +309,7 @@ console.log('Express Server running');
 
 
 
-//--------------------functions
+//--------------------functions----------------------
 function renewToken(oldToken, res){
     var payload
     try{
