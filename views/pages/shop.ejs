@@ -52,11 +52,15 @@
                     var children = form.childNodes;
                     console.log(children);
                     var stock;
+                    var quantity;
 
                     children.forEach(element => {
                         if(element.id == "itemStock"){
                             stock = element;
                             console.log(stock);
+                        }
+                        if(element.id == "quantity"){
+                            quantity = element;
                         }
                     });
 
@@ -66,7 +70,10 @@
                         return false;
                     }
                     stockVal = parseInt(stock.value);
+                    //console.log("stockVal: " + stockVal);
+                    
                     quantityVal = parseInt(document.getElementById("quantity").value);
+                    //console.log("quantityVal: " + quantityVal);
                     if(stockVal < quantityVal){
                         alert("Not enough stock");
                         return false;
