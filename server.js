@@ -358,7 +358,7 @@ app.route('/shop')
 
     if(!token){
         //res.render('pages/index', {firstName: "Not logged in"});
-        res.redirect("/");
+        res.redirect("/shop");
     }
 
     var payload = renewToken(token, res);

@@ -30,7 +30,7 @@
                             <input type="text" name="itemStock" value="<%=item.stock %>" hidden>
                             <label for="quantity">Quantity: </label>
                             <input type="text" id="quantity" name="quantity">
-                            <input type="submit" value="Add to Cart">
+                            <input type="submit" value="Add to Cart" onclick="accountValidation()">
                         </form>
                     </li>
                     <% }); %>
@@ -40,6 +40,13 @@
         <script>
             var res = "<%- firstName %>";
             manageHeader(res);
+
+            function accountValidation(){
+                if(res == "Not logged in" || res == undefined){
+                    alert("You must be logged in to make a purchase");
+                }
+            }
+
         </script>
     </body>
 </html>
