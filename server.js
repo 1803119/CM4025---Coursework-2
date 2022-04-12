@@ -423,7 +423,7 @@ app.route('/cart')
 .post(function(req, res){
     var data = req.body;
 
-    var newCart = result.cart
+    var newCart = data.cart
     console.log(newCart);
     var removeIndex = 0;
     for(var i = 0; i < newCart.length; i++){
