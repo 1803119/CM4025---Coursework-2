@@ -4,6 +4,13 @@
     border-radius: 0;
   }
 
+  .slide-content .scroller {
+    width: 1024px;
+  }
+
+  * {
+    outline: 1px solid #f00 !important;
+  }
   
   /* Set height of the grid 
   .row.content {height: 450px}
