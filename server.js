@@ -294,6 +294,7 @@ app.route('/comments')
 
         client.db().collection("adminUsers").findOne({emailAddress: payload.emailAddress}, function(err, result){
             if(result != undefined){
+                console.log("isAdmin: " + result.emailAddress);
                 isAdmin = true;
             }
         });
