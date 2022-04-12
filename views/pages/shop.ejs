@@ -65,6 +65,10 @@
                         
                         return false;
                     }
+                    if(parseInt(stock.value) < parseInt(document.getElementById("quantity").value)){
+                        alert("Not enough stock");
+                        return false;
+                    }
                 }
             }
 
