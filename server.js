@@ -457,6 +457,7 @@ app.route('/cart')
                 if(shopErr) throw shopErr;
                 res.redirect("/cart");
             //res.redirect("/cart");
+            });
         });
     });
 });
