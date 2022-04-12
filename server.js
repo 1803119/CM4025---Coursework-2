@@ -453,7 +453,10 @@ app.route('/cart')
     // });
         console.log(newCart);
         client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: newCart}}, function(err1, res1){
-            res.redirect("/cart");
+            client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock + data.quantity)}}, function(shopErr, shopResult){
+                if(shopErr) throw shopErr;
+                res.redirect("/cart");
+            //res.redirect("/cart");
         });
     });
 });
