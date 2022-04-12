@@ -41,7 +41,8 @@
             }
 
             if(isAdmin == true){
-                var deleteAllButton = document.createElement("button").appendChild(document.createTextNode("Delete all Comments"));
+                var deleteAllButton = document.createElement("button");
+                deleteAllButton.innerText = "Delete all Comments";
                 document.getElementById("commentInputDiv").appendChild(deleteAllButton);
             }
 
