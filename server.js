@@ -364,7 +364,7 @@ app.route('/shop')
     var payload = renewToken(token, res);
 
     //var newItemStock = parseInt(data.itemStock) - parseInt(data.quantity);
-    client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {itemName: data.itemName}}, function(err, result){
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, function(err, result){
         console.log(result);
     });
 
