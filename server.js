@@ -303,7 +303,7 @@ userAccountRouter.get("/deleteAccount", function(req, res){
     var payload = renewToken(token, res);
 
     client.db().collection("users").deleteOne({emailAddress: payload.emailAddress}, function(err, result){
-        req.cookies.set('token', {expires: Date.now()});
+        cookies.set('token', {expires: Date.now()});
         res.redirect("/");
     })
 });

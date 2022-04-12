@@ -17,7 +17,7 @@
                 <input type="date" id="dateOfBirth" name="dateOfBirth">
                 <input type="submit" value="Submit">
             </form>
-            <a href="/myAccount/deleteAccount" onclick="return showPopup('Are you sure you wish to delete this account forever?')" >Delete Account</a>
+            <a href="/myAccount/deleteAccount" onclick="return confirm('Are you sure you wish to delete this account forever?')" >Delete Account</a>
         </main>
         <script type="text/javascript" src="/js/manageHeader.js"></script>
         <script>
@@ -26,12 +26,6 @@
             document.getElementById("firstName").value = "<%- firstName %>";
             document.getElementById("lastName").value = "<%- lastName %>";
             document.getElementById("dateOfBirth").value = "<%- dateOfBirth %>";
-
-            function showPopup(message){
-                if(confirm(message)){
-
-                }
-            }
         </script>
     </body>
 </html>
