@@ -282,7 +282,7 @@ app.route('/comments')
 
     if(!token){
         //res.render('pages/index', {firstName: "Not logged in"});
-        res.render("pages/comments");
+        res.render("pages/comments", {firstName: "Not logged in"});
     }
 
     var payload = renewToken(token, res);
