@@ -35,16 +35,16 @@
         <script>
             var res = "<%- firstName %>";
             var isAdmin = "<%- isAdmin %>";
-            console.log("Testing: " + isAdmin);
             manageHeader(res);
+            
+            // Adds button for admin to delete all comments
             
             if(res == "Not logged in" || res == undefined){
                 document.getElementById("commentInputDiv").remove();
             }
-            console.log("Testing: " + isAdmin);
+
 
             if(isAdmin == "true"){
-                //console.log("Testing");
                 var deleteAllButton = document.createElement("a");
                 deleteAllButton.innerText = "Delete all Comments";
                 deleteAllButton.href = "/deleteComments";
@@ -52,11 +52,6 @@
                 var commentInputDiv = document.getElementById("commentInputDiv");
                 commentInputDiv.appendChild(deleteAllButton);
             }
-
-
-
-            //var comments = JSON.stringify("<%= comments %>");
-            //console.log(comments);
 
         </script>
     </body>

@@ -1,8 +1,5 @@
 
 function manageHeader(res){
-
-    console.log(res);
-
     if(res != "Not logged in" && res != undefined){
         var loggedOutButtons = document.getElementsByClassName("loggedOutButtons");
         
@@ -15,15 +12,9 @@ function manageHeader(res){
 
         var logoutButton = document.getElementById("logOutButton");
 
-        //logoutLink.appendChild(document.createTextNode("Logout"));
-
         logoutButton.onclick = function(){
             document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
-
-        //logoutLink.href = "/";
-                    
-        //document.getElementById("nav-li").appendChild(logoutLink);
     }
     else{
         var loggedInButtons = document.getElementsByClassName("loggedInButtons");
@@ -33,6 +24,3 @@ function manageHeader(res){
         }
     }
 }
-// module.exports = {
-//     manageHeader
-// }

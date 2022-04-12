@@ -42,6 +42,7 @@
             var res = "<%- firstName %>";
             manageHeader(res);
 
+            // Checks user is logged in and ensures that there is adequate stock to add to cart
             function validation(element){
                 if(res == "Not logged in" || res == undefined){
                     alert("You must be logged in to make a purchase");
@@ -51,14 +52,14 @@
                 else{
                     var form = element.parentNode;
                     var children = form.childNodes;
-                    console.log(children);
+                    //console.log(children);
                     var stock;
                     var quantity;
 
                     children.forEach(element => {
                         if(element.id == "itemStock"){
                             stock = element;
-                            console.log(stock);
+                            //console.log(stock);
                         }
                         if(element.id == "quantity"){
                             quantity = element;
@@ -71,10 +72,10 @@
                         return false;
                     }
                     stockVal = parseInt(stock.value);
-                    //console.log("stockVal: " + stockVal);
+
                     
                     quantityVal = parseInt(quantity.value);
-                    //console.log("quantityVal: " + quantityVal);
+
                     if(stockVal < quantityVal){
                         alert("Not enough stock");
                         return false;
