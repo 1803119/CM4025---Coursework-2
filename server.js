@@ -369,8 +369,10 @@ app.route('/shop')
             var newCart = result.cart
             console.log(newCart);
             newCart.forEach(item => {
+                var itemQuantity = parseInt(item.quantity);
+                var dataQuantity = parseInt(data.quantity);
                 if(item.itemName == data.itemName){
-                    parseInt(item.quantity) += parseInt(data.quantity);
+                    item.quantity = itemQuantity + dataQuantity;
                 }
             });
             console.log(newCart);
