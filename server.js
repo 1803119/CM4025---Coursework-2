@@ -279,7 +279,7 @@ app.route('/comments')
 .get(function(req, res){
     
     client.db().collection("comments").find({}).toArray(function(commentErr, commentResults){
-        if(err) throw err;
+        if(commentErr) throw commentErr;
         //console.log(commentResults);
 
         const token = req.cookies.token;
