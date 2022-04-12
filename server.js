@@ -423,15 +423,16 @@ app.route('/cart')
 .post(function(req, res){
     var data = req.body;
 
-    var newCart = data.cart
-    console.log(newCart);
-    var removeIndex = 0;
-    for(var i = 0; i < newCart.length; i++){
-        if(newCart[i].itemName == data.itemName){
-            removeIndex = i;
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, function(err, result){
+        var newCart = result.cart
+        console.log(newCart);
+        var removeIndex = 0;
+        for(var i = 0; i < newCart.length; i++){
+            if(newCart[i].itemName == data.itemName){
+                removeIndex = i;
+            }
         }
-    }
-    newCart.splice(removeIndex, 1);
+        newCart.splice(removeIndex, 1);
     //     if (item.itemName == data.itemName){
 
     //     }
@@ -440,9 +441,12 @@ app.route('/cart')
     //         item.quantity = itemQuantity + dataQuantity;
     //     }
     // });
-    console.log(newCart);
+        console.log(newCart);
     //client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: newCart}}, function(err1, res1){
                 res.redirect("/cart");
+    });
+
+    
     //});
 
 })
