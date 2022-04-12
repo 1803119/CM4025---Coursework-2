@@ -420,6 +420,32 @@ app.route('/cart')
         }
     });
 })
+.post(function(req, res){
+    var data = req.body;
+
+    var newCart = result.cart
+    console.log(newCart);
+    var removeIndex = 0;
+    for(var i = 0; i < newCart.length; i++){
+        if(newCart[i].itemName == data.itemName){
+            removeIndex = i;
+        }
+    }
+    newCart.splice(removeIndex, 1);
+    //     if (item.itemName == data.itemName){
+
+    //     }
+    //     var dataQuantity = parseInt(data.quantity);
+    //     if(item.itemName == data.itemName){
+    //         item.quantity = itemQuantity + dataQuantity;
+    //     }
+    // });
+    console.log(newCart);
+    //client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: newCart}}, function(err1, res1){
+                res.redirect("/cart");
+    //});
+
+})
 
 
 

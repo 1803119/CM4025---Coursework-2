@@ -20,6 +20,12 @@
                             <% totalCost += cost; %>
                             £<%= item.itemCost %> each x <%= item.quantity %> items : £<%= cost.toFixed(2) %>
                         </h4>
+                        <form method="POST" action="/cart">
+                            <input type="text" name="itemName" value="<%= item.itemName %>" hidden>
+                            <input type="text" name="quantity" value="<%item.quantity %>"hidden>
+                            <input type="submit" value="Remove from Cart">
+                        </form>
+                        
                     </li>
                 <% }); %>
                 <li>
