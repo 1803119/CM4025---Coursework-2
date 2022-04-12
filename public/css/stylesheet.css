@@ -4,6 +4,10 @@
     border-radius: 0;
   }
   
+  #greeting{
+    justify-content: right;
+  }
+
   /* Set height of the grid */
   .row.content {height: 450px}
   
