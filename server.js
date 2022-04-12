@@ -300,9 +300,15 @@ app.route('/comments')
         
         });
     });
-
-    
 })
+.post(function(req, res){
+    var data = req.body;
+
+    client.db().collection("comments").insertOne(data, function(err, result){
+        if (err) throw err;
+        console.log("Added comment");
+    });
+});
 
 
 
