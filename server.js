@@ -171,7 +171,7 @@ app.route('/login')
 
 app.route('/register')
 .get(function(req, res){
-    res.render('pages/register');
+    res.render('pages/register', {firstName: "Not logged in"});
 })
 .post(function(req, res){
     console.log(req.body);
