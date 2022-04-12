@@ -176,24 +176,34 @@ app.route('/register')
 .post(function(req, res){
     console.log(req.body);
     var data = req.body;
+    
+    client.db().collection("users").findOne({emailAddress: data.emailAddress}, function(err, result){
 
-    const saltRounds = 10;
-    // var myPlaintextPassword = "password";
-    // var hashedPass;
+        if(result != null){
+            res.send("User already exists");
+        }
+        else{
+            const saltRounds = 10;
+            // var myPlaintextPassword = "password";
+            // var hashedPass;
 
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(data.password, salt, function(err, hash) {
-            // Store hash in your password DB.
-            data.password = hash;
-            //hashedPass = hash;
-            client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
-                if(err) throw err;
-                console.log("User registered");
+            bcrypt.genSalt(saltRounds, function(err, salt) {
+                bcrypt.hash(data.password, salt, function(err, hash) {
+                    // Store hash in your password DB.
+                    data.password = hash;
+                    //hashedPass = hash;
+                    client.db().collection("users").insertOne(data, function(err, res){//{firstName: firstName, lastName: lastName}, function(err, res){
+                        if(err) throw err;
+                        console.log("User registered");
+                    });
+                });
             });
-        });
+
+            res.redirect("/");
+        }
     });
 
-    res.redirect("/");
+    
 });
 
 var userAccountRouter = express.Router();
