@@ -265,7 +265,7 @@ userAccountRouter.get("/deleteAccount", function(req, res){
     client.db().collection("users").deleteOne({emailAddress: payload.emailAddress}, function(err, result){
         res.clearCookie("token");
         res.redirect("/");
-    })
+    });
 });
 
 
@@ -401,6 +401,26 @@ app.route('/shop')
         //}
     
 });
+
+
+app.route('/cart')
+.get(function(req, res){
+    const token = req.cookies.token;
+
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+        if(result != undefined){
+            res.render('pages/cart', {firstName: result.firstName, cartItems: result.cart});
+        }
+    });
+})
+
 
 
 

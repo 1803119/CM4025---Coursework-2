@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cart</title>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header') %>
+        </header>
+        <main>
+            <ul>
+                <% cartItems.forEach(function(item){ %>
+                    <li>
+                        <h3>
+                            <%= item.itemName %>
+                        </h3>
+                        <h4>
+                            <% var cost = item.itemCost * item.quantity %>
+                            <%= item.itemCost %> x <%= item.quantity %> : <%= cost %>
+                        </h4>
+                    </li>
+                <% }); %>
+
+            </ul>
+        </main>
+        <script type="text/javascript" src="/js/manageHeader.js"></script>
+        <script>
+            var res = "<%- firstName %>";
+            manageHeader(res);
+        </script>
+    </body>
+</html>

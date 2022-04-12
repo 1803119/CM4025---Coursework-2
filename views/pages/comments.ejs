@@ -36,6 +36,7 @@
             var isAdmin = "<%- isAdmin %>";
             console.log("Testing: " + isAdmin);
             manageHeader(res);
+            
             if(res == "Not logged in" || res == undefined){
                 document.getElementById("commentInputDiv").remove();
             }
