@@ -327,6 +327,29 @@ app.route('/deleteComments')
         console.log("Dropped comments collection");
     });
     res.redirect('/comments');
+});
+
+
+app.route('/shop')
+.get(function(req, res){
+    client.db().collection("shopItems").find({}).toArray(function(shopErr, shopResults){
+        if(shopErr) throw shopErr;
+        const token = req.cookies.token;
+
+        if(!token){
+            res.render('pages/shop', {firstName: "Not logged in", shopItems: shopResults});
+        }
+
+        var payload = renewToken(token, res);
+
+
+
+        client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+            if(result != undefined){
+                res.render('pages/shop', {firstName: result.firstName, shopItems: shopResults});
+            }
+        });
+    });
 })
 
 
