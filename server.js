@@ -434,11 +434,14 @@ app.route('/cart')
 
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, function(err, result){
-        var newCart = result.cart
-        console.log("itemStock: " + data.itemStock);
+        
+        var newCart = result.cart;
+        //console.log("itemStock: " + data.itemStock);
+        
         var removeIndex = 0;
         var itemQuantity = 0;
         // var itemStock = 
+        
         for(var i = 0; i < newCart.length; i++){
             if(newCart[i].itemName == data.itemName){
                 itemQuantity = newCart[i].quantity;
@@ -456,7 +459,7 @@ app.route('/cart')
     // });
         console.log(newCart);
         client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: newCart}}, function(err1, res1){
-            client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock + itemQuantity)}}, function(shopErr, shopResult){
+            client.db().collection("shopItems").updateOne({itemName: data.itemName},{$inc: {itemStock: itemQuantity}}, function(shopErr, shopResult){
                 if(shopErr) throw shopErr;
                 res.redirect("/cart");
             //res.redirect("/cart");
