@@ -9,8 +9,8 @@
         </header>
         <main>
             <div>
-                <form>
-                    <label for="commentInput">Comment:</label>
+                <form id="commentInputForm">
+                    <label for="commentInput" id="commentInputLabel">Comment:</label>
                     <input type="text" id="commentInput" name="commentInput">
                 </form>
                 
@@ -21,6 +21,9 @@
         <script>
             var res = "<%- firstName %>";
             manageHeader(res);
+            if(res == "Not logged in" || res == undefined){
+                document.getElementById("commentInputForm").remove();
+            }
         </script>
     </body>
 </html>
