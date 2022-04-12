@@ -18,6 +18,13 @@
             </div>
             <div id="commentViewDiv">
                 <ul>
+                    <% comments.forEach(function(comment){ %>
+                        <li>
+                            <h4>
+                                <%= comment.commentText %>
+                            </h4>
+                        </li>
+                    <% }); %>    
                     
                 </ul>
             </div>
@@ -31,8 +38,10 @@
                 document.getElementById("commentInputDiv").remove();
             }
 
-            var comments = JSON.stringify("<%= comments %>");
-            console.log(comments);
+
+
+            //var comments = JSON.stringify("<%= comments %>");
+            //console.log(comments);
 
         </script>
     </body>
