@@ -31,7 +31,7 @@
                 document.getElementById("commentInputDiv").remove();
             }
 
-            var comments = "<%- JSON.stringify(comments) %>";
+            var comments = JSON.stringify("<%= comments %>");
             console.log(comments);
 
         </script>
