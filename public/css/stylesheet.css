@@ -9,10 +9,10 @@
     display:block;
   }
   body{
-    background-color: aqua;
+    background-color: white;
   }
 
-  #pageTitle{
+  .pageTitle{
     font-size: 50px;
   }
   /* Set height of the grid */
