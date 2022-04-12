@@ -43,7 +43,9 @@
             if(isAdmin == true){
                 var deleteAllButton = document.createElement("button");
                 deleteAllButton.innerText = "Delete all Comments";
-                document.getElementById("commentInputDiv").appendChild(deleteAllButton);
+                
+                var commentInputDiv = document.getElementById("commentInputDiv");
+                commentInputDiv.appendChild(deleteAllButton);
             }
 
 
