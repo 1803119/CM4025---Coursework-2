@@ -65,7 +65,9 @@
                         
                         return false;
                     }
-                    if(parseInt(stock.value) < parseInt(document.getElementById("quantity").value)){
+                    stockVal = parseInt(stock.value);
+                    quantityVal = parseInt(document.getElementById("quantity").value);
+                    if(stockVal < quantityVal){
                         alert("Not enough stock");
                         return false;
                     }
