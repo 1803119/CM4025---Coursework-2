@@ -229,8 +229,23 @@ userAccountRouter.get("/",function(req, res){
 });
 
 userAccountRouter.post("/", function(req, res){
+    var data = req.body;
 
-})
+    const token = req.cookies.token;
+
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {firstName: data.firstName, lastName: data.lastName, dateOfBirth: data.dateOfBirth}});//{
+        //if(result != undefined){
+            //res.render('pages/editAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
+        //}
+    res.redirect("/myAccount");
+});
 
 userAccountRouter.get("/editAccount", function(req, res){
     const token = req.cookies.token;
