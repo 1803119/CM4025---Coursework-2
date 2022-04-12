@@ -292,6 +292,22 @@ userAccountRouter.get("/editAccount", function(req, res){
     //res.send("Edit account details page");
 });
 
+userAccountRouter.get("/deleteAccount", function(req, res){
+    const token = req.cookies.token;
+
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").deleteOne({emailAddress: payload.emailAddress}, function(err, result){
+        req.cookies.set('token', {expires: Date.now()});
+        res.redirect("/");
+    })
+});
+
 
 app.use('/myAccount', userAccountRouter)
 
