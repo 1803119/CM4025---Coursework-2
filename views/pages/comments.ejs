@@ -33,9 +33,15 @@
         <script type="text/javascript" src="/js/manageHeader.js"></script>
         <script>
             var res = "<%- firstName %>";
+            var isAdmin = "<%- isAdmin %>";
             manageHeader(res);
             if(res == "Not logged in" || res == undefined){
                 document.getElementById("commentInputDiv").remove();
+            }
+
+            if(isAdmin){
+                var deleteAllButton = document.createElement("button").appendChild(document.createTextNode("Delete all Comments"));
+                document.getElementById("commentInputDiv").appendChild(deleteAllButton);
             }
 
 

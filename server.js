@@ -286,18 +286,24 @@ app.route('/comments')
 
         if(!token){
             //res.render('pages/index', {firstName: "Not logged in"});
-            res.render("pages/comments", {firstName: "Not logged in", comments: commentResults});
+            res.render("pages/comments", {firstName: "Not logged in", comments: commentResults, isAdmin: false});
         }
 
         var payload = renewToken(token, res);
+        var isAdmin = false;
+
+        client.db().collection("adminUsers").findOne({emialAddress: payload.emailAddress}, function(err, result){
+            if(result != undefined){
+                isAdmin = true;
+            }
+        });
 
         client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
             if(result != undefined){
             
-                res.render('pages/comments', {firstName: result.firstName, comments: commentResults});
+                res.render('pages/comments', {firstName: result.firstName, comments: commentResults, isAdmin: isAdmin});
             
             }
-        
         });
     });
 })
