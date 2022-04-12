@@ -437,8 +437,11 @@ app.route('/cart')
         var newCart = result.cart
         console.log(newCart);
         var removeIndex = 0;
+        var itemQuantity = 0;
+        // var itemStock = 
         for(var i = 0; i < newCart.length; i++){
             if(newCart[i].itemName == data.itemName){
+                itemQuantity = newCart[i].quantity;
                 removeIndex = i;
             }
         }
