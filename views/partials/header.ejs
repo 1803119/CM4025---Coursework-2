@@ -1,16 +1,36 @@
 <!-- header partial -->
 <h1>Justice for Ugly Animals</h1>
-<nav>
-    <ul>
-        <li id="nav-li">
+<nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <li class="active">
             <a href="/">Home</a>
-            <a class="loggedOutButtons" href="/login">Login</a>
-            <a class="loggedOutButtons" href="/register">Register a New Account</a>
+        </li><!-- <li id="nav-li"> -->
+
+        <li>
             <a href="/comments">Comments</a>
+        </li>
+        <li>
             <a href="/shop">Shop</a>
-            <a class="loggedInButtons" id="logOutButton" href="/">Log Out</a>
+        </li>
+        <li>
+            
+        </li>
+        <li>
             <a class="loggedInButtons" href="/myAccount">My Account</a>
+        </li>
+        <li>
             <a class="loggedInButtons" href="/cart">My Cart</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a class="loggedOutButtons" href="/login">Login</a>
+        </li>
+        <li>
+            <a class="loggedInButtons" id="logOutButton" href="/">Log Out</a>
+        </li>
+        <li>
+            <a class="loggedOutButtons" href="/register">Register a New Account</a>
         </li>
     </ul>
     <h4 id="greeting"></h4>
