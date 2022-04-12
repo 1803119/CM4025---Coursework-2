@@ -39,9 +39,10 @@
             if(res == "Not logged in" || res == undefined){
                 document.getElementById("commentInputDiv").remove();
             }
+            console.log("Testing");
 
             if(isAdmin == true){
-                console.log("Testing");
+                //console.log("Testing");
                 var deleteAllButton = document.createElement("a");
                 deleteAllButton.innerText = "Delete all Comments";
 
