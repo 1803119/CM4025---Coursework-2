@@ -289,7 +289,8 @@ app.route('/comments')
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         if(result != undefined){
-            client.db().collection("comments").find({}, function(commentErr, commentResults){
+            client.db().collection("comments").find({}).toArray(function(commentErr, commentResults){
+                if(err) throw err;
                 res.render('pages/comments', {firstName: result.firstName, comments: commentResults});
             });
             
