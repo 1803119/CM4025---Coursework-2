@@ -88,7 +88,34 @@ app.use('/admin', adminRouter);
 app.route('/login')
 // show the form
 .get(function(req, res){
-    res.render('pages/login');
+    const token = req.cookies.token;
+
+    if(!token){
+        res.render('pages/login');
+    }
+
+    // var payload
+    // try{
+    //     payload = jwt.verify(token, process.env.JWT_KEY)
+    // }
+    // catch (e){
+    //     if (e instanceof jwt.JsonWebTokenError) {
+	// 		// if the error thrown is because the JWT is unauthorized, return a 401 error
+	// 		return res.status(401).end()
+    //     }
+    // }
+    var payload = renewToken(token, res);
+
+
+
+    // client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+    //     if(result != undefined){
+    //         res.render('pages/index', {firstName: result.firstName});
+    //     }
+        
+    //});
+
+    res.redirect("/");
 })
 // Process the form
 .post(function(req, res){
