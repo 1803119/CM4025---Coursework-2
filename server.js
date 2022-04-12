@@ -292,21 +292,19 @@ app.route('/comments')
         var payload = renewToken(token, res);
         var isAdmin = false;
 
-        client.db().collection("adminUsers").findOne({emialAddress: payload.emailAddress}, function(err, result){
+        client.db().collection("adminUsers").findOne({emailAddress: payload.emailAddress}, function(err, result){
             if(result != undefined){
                 isAdmin = true;
             }
-
-            client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-                if(result != undefined){
-            
-                    res.render('pages/comments', {firstName: result.firstName, comments: commentResults, isAdmin: isAdmin});
-            
-                }
-            });
         });
 
-        
+        client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+            if(result != undefined){
+            
+                res.render('pages/comments', {firstName: result.firstName, comments: commentResults, isAdmin: isAdmin});
+            
+            }
+        });
     });
 })
 .post(function(req, res){
