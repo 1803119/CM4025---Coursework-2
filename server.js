@@ -296,15 +296,17 @@ app.route('/comments')
             if(result != undefined){
                 isAdmin = true;
             }
+
+            client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
+                if(result != undefined){
+            
+                    res.render('pages/comments', {firstName: result.firstName, comments: commentResults, isAdmin: isAdmin});
+            
+                }
+            });
         });
 
-        client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
-            if(result != undefined){
-            
-                res.render('pages/comments', {firstName: result.firstName, comments: commentResults, isAdmin: isAdmin});
-            
-            }
-        });
+        
     });
 })
 .post(function(req, res){
