@@ -30,7 +30,7 @@
                             <input type="text" id="itemStock" name="itemStock" value="<%=item.itemStock %>" hidden>
                             <label for="quantity">Quantity: </label>
                             <input type="text" id="quantity" name="quantity" value="1">
-                            <input type="submit" value="Add to Cart" onclick="return validation()">
+                            <input type="submit" value="Add to Cart" onclick="return validation(this)">
                         </form>
                     </li>
                     <% }); %>
@@ -41,15 +41,18 @@
             var res = "<%- firstName %>";
             manageHeader(res);
 
-            function validation(){
+            function validation(element){
                 if(res == "Not logged in" || res == undefined){
                     alert("You must be logged in to make a purchase");
                     return false;
 
                 }
                 else{
-                    if(document.getElementById("itemStock").innerText == 0){
+                    var form = element.parentNode;
+                    var stock = form.getElementById("itemStock")
+                    if(stock.innerText == 0){
                         alert("Item is out of stock");
+                        
                         return false;
                     }
                 }
