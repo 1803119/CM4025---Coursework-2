@@ -363,8 +363,10 @@ app.route('/shop')
 
     var payload = renewToken(token, res);
 
+    var newItemStock = data.itemStock - data.quantity;
+
     client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});//{
-    client.db().collection("shopItems").updateOne({itemName: data.itemName, itemStock: (data.itemStock-data.quantity)});
+    client.db().collection("shopItems").updateOne({itemName: data.itemName, itemStock: newItemStock});
     //if(result != undefined){
             //res.render('pages/editAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
         //}
