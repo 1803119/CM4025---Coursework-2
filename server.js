@@ -91,7 +91,7 @@ app.route('/login')
     const token = req.cookies.token;
 
     if(!token){
-        res.render('pages/login');
+        res.render('pages/login', {firstName: "Not logged in"});
     }
 
     // var payload
