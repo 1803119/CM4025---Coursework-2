@@ -320,7 +320,14 @@ app.route('/comments')
     res.redirect('/comments');
 });
 
-
+app.route('/deleteComments')
+.get(function(req, res){
+    client.db().collection("comments").drop(function(err, result){
+        if (err) throw err;
+        console.log("Dropped comments collection");
+    });
+    res.redirect('/comments');
+})
 
 
 

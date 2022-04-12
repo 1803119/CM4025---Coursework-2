@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <head>
-    
+    <title>Register a new Account</title>
 </head>
 <body>
-    <form method="POST" action="/register">
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <main>
+        <form method="POST" action="/register">
         <label for="firstName">First Name: </label>
         <input type="text" id="firstName" name="firstName" required>
         <label for="lastName">Last Name: </label>
@@ -19,18 +23,8 @@
         <input type="submit" value="Submit" onclick="validatePassword()">
     </form>
 
-    <!-- <script type="text/javascript">
-        module.exports = (app) => {
-        const User = require('./user.model')
-        const {
-            generateSalt,
-            hash,
-            compare
-        } = require('/encryption.js');
-        }
-    </script> -->
-
-    <!-- <script type="module" src="/encryption.js"></script> -->
+    </main>
+    
     <script language='javascript' type='text/javascript'>
         function validatePassword() {
             if (document.getElementById('password').value != document.getElementById('confirmPassword').value) {
