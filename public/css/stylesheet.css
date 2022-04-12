@@ -8,6 +8,9 @@
     justify-content: right;
     display:block;
   }
+  body{
+    background-color: aqua;
+  }
 
   #pageTitle{
     font-size: 50px;
