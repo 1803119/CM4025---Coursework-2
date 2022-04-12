@@ -308,6 +308,7 @@ app.route('/comments')
         if (err) throw err;
         console.log("Added comment");
     });
+    res.redirect('/comments');
 });
 
 
