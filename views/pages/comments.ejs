@@ -40,7 +40,7 @@
                 document.getElementById("commentInputDiv").remove();
             }
 
-            if(isAdmin){
+            if(isAdmin == true){
                 var deleteAllButton = document.createElement("button").appendChild(document.createTextNode("Delete all Comments"));
                 document.getElementById("commentInputDiv").appendChild(deleteAllButton);
             }
