@@ -364,10 +364,13 @@ app.route('/shop')
     var payload = renewToken(token, res);
 
     //var newItemStock = parseInt(data.itemStock) - parseInt(data.quantity);
+    client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {itemName: data.itemName}}, function(err, result){
+        console.log(result);
+    });
 
     client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});//{
-    client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}}, function(err, result){
-        if(err) throw err;
+    client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}}, function(shopErr, shopResult){
+        if(shopErr) throw shopErr;
         res.redirect("/shop");
     });
     //if(result != undefined){
