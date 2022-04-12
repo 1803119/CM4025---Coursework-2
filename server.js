@@ -366,6 +366,7 @@ app.route('/shop')
     //var newItemStock = parseInt(data.itemStock) - parseInt(data.quantity);
     client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, function(err, result){
         if(result != null){
+            console.log(result.quantity);
             client.db().collection("users").updateOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, {$set: {"cart.$" : {quantity: result.quantity + data.quantity}}}, function(err1, res1){
                 //res.redirect("/shop");
             });
