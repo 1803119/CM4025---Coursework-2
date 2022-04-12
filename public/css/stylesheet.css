@@ -6,6 +6,7 @@
   
   #greeting{
     justify-content: right;
+    display:block;
   }
 
   /* Set height of the grid */
