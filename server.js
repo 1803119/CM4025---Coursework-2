@@ -366,11 +366,14 @@ app.route('/shop')
     //var newItemStock = parseInt(data.itemStock) - parseInt(data.quantity);
 
     client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});//{
-    client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}});
+    client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}}, function(err, result){
+        if(err) throw err;
+        res.redirect("/shop");
+    });
     //if(result != undefined){
             //res.render('pages/editAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
         //}
-    res.redirect("/shop");
+    
 });
 
 
