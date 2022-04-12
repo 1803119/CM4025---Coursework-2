@@ -365,14 +365,27 @@ app.route('/shop')
 
     //var newItemStock = parseInt(data.itemStock) - parseInt(data.quantity);
     client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, function(err, result){
-        console.log(result);
+        if(result != null){
+            client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$set: {cart: {$elemMatch: {quantity: result.quantity + data.quantity}}}}, function(err1, res1){
+                //res.redirect("/shop");
+            });
+        }
+        else{
+            client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});
+        }
+        
+        client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}}, function(shopErr, shopResult){
+            if(shopErr) throw shopErr;
+            res.redirect("/shop");
+        });
+        //console.log(result);
     });
 
-    client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});//{
-    client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}}, function(shopErr, shopResult){
-        if(shopErr) throw shopErr;
-        res.redirect("/shop");
-    });
+    // client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});//{
+    // client.db().collection("shopItems").updateOne({itemName: data.itemName},{$set: {itemStock: (data.itemStock - data.quantity)}}, function(shopErr, shopResult){
+    //     if(shopErr) throw shopErr;
+    //     res.redirect("/shop");
+    // });
     //if(result != undefined){
             //res.render('pages/editAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
         //}
