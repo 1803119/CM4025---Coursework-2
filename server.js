@@ -363,7 +363,7 @@ app.route('/shop')
 
     var payload = renewToken(token, res);
 
-    var newItemStock = data.itemStock - data.quantity;
+    var newItemStock = parseInt(data.itemStock) - parseInt(data.quantity);
 
     client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, itemCost: data.itemCost, quantity: data.quantity}}});//{
     client.db().collection("shopItems").updateOne({itemName: data.itemName, itemStock: newItemStock});
