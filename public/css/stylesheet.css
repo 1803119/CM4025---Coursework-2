@@ -4,23 +4,19 @@
     border-radius: 0;
   }
 
-  .container-fluid> .row {
-    margin-left: 0;
-    margin-right: 0;
-}
   
-  /* Set height of the grid  */
+  /* Set height of the grid 
   .row.content {height: 450px}
+   */
   
-  
-  /* Set black background color, white text and some padding */
+  /* Set black background color, white text and some padding
   footer {
     background-color: #555;
     color: white;
     padding: 15px;
   }
-  
-  /* On small screens, set height to 'auto' for grid */
+   */
+  /* On small screens, set height to 'auto' for grid
   @media screen and (max-width: 767px) {
     .row.content {height:auto;} 
-  }
+  } */
