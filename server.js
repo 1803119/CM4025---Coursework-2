@@ -444,7 +444,7 @@ app.route('/cart')
         
         for(var i = 0; i < newCart.length; i++){
             if(newCart[i].itemName == data.itemName){
-                itemQuantity = newCart[i].quantity;
+                itemQuantity = parseInt(newCart[i].quantity);
                 removeIndex = i;
             }
         }
