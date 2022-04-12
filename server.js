@@ -351,7 +351,24 @@ app.route('/shop')
         });
     });
 })
+.post(function(req, res){
+    var data = req.body;
+    
+    const token = req.cookies.token;
 
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+    client.db().collection("users").updateOne({emailAddress: payload.emailAddress}, {$push: {cart: {itemName: data.itemName, description:data.description, itemCost: data.itemCost, itemStock: data.itemStock}}});//{
+        //if(result != undefined){
+            //res.render('pages/editAccount', {firstName: result.firstName, lastName: result.lastName, dateOfBirth: result.dateOfBirth, emailAddress: result.emailAddress});
+        //}
+    res.redirect("/shop");
+});
 
 
 

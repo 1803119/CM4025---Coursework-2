@@ -21,8 +21,17 @@
                             <%= item.itemCost %>
                         </h4>
                         <h4>
-                            <%= item.stock %>
+                            Remaining Stock: <%= item.stock %>
                         </h4>
+                        <form method="POST" action="/shop">
+                            <input type="text" name="itemName" value="<%=item.itemName %>" hidden>
+                            <input type="text" name="description" value="<%=item.description %>" hidden>
+                            <input type="text" name="itemCost" value="<%=item.itemCost %>" hidden>
+                            <input type="text" name="itemStock" value="<%=item.stock %>" hidden>
+                            <label for="quantity">Quantity: </label>
+                            <input type="text" id="quantity" name="quantity">
+                            <input type="submit" value="Add to Cart">
+                        </form>
                     </li>
                     <% }); %>
             </ul>
