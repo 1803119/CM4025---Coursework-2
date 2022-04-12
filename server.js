@@ -479,6 +479,15 @@ app.route('/cart')
 });
 
 
+var stylesRouter = express.Router();
+
+stylesRouter.get('/', function(req, res){
+    res.sendFile(__dirname + '/css/stylesheet.css')
+});
+
+app.use('/styles', stylesRouter);
+
+
 
 
 // start server
