@@ -423,6 +423,16 @@ app.route('/cart')
 .post(function(req, res){
     var data = req.body;
 
+    const token = req.cookies.token;
+
+    if(!token){
+        //res.render('pages/index', {firstName: "Not logged in"});
+        res.redirect("/");
+    }
+
+    var payload = renewToken(token, res);
+
+
     client.db().collection("users").findOne({emailAddress: payload.emailAddress, cart: {$elemMatch: {itemName: data.itemName}}}, function(err, result){
         var newCart = result.cart
         console.log(newCart);
