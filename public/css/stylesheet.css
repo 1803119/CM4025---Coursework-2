@@ -9,6 +9,9 @@
     display:block;
   }
 
+  #pageTitle{
+    font-size: 50px;
+  }
   /* Set height of the grid */
   .row.content {height: 450px}
   
