@@ -289,7 +289,10 @@ app.route('/comments')
 
     client.db().collection("users").findOne({emailAddress: payload.emailAddress}, function(err, result){
         if(result != undefined){
-            res.render('pages/comments', {firstName: result.firstName});
+            client.db().collection("comments").find({}, function(commentErr, commentResults){
+                res.render('pages/comments', {firstName: result.firstName, comments: commentResults});
+            });
+            
         }
         
     });

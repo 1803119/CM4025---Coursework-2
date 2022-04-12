@@ -8,12 +8,18 @@
             <%- include('../partials/header') %>
         </header>
         <main>
-            <div>
-                <form id="commentInputForm">
+            <div id="commentInputDiv">
+                <form method="POST">
                     <label for="commentInput" id="commentInputLabel">Comment:</label>
                     <input type="text" id="commentInput" name="commentInput">
+                    <input type="submit" value="Submit">
                 </form>
                 
+            </div>
+            <div id="commentViewDiv">
+                <ul>
+                    
+                </ul>
             </div>
             
         </main>
@@ -22,8 +28,12 @@
             var res = "<%- firstName %>";
             manageHeader(res);
             if(res == "Not logged in" || res == undefined){
-                document.getElementById("commentInputForm").remove();
+                document.getElementById("commentInputDiv").remove();
             }
+
+            var comments = "<%- JSON.stringify(comments) %>";
+            console.log(comments);
+
         </script>
     </body>
 </html>
